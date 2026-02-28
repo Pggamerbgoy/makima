@@ -1,0 +1,325 @@
+spotipy not installed ΓÇö MusicDJ disabled.
+spotipy not installed. Spotify disabled.
+C:\Users\kamit\AppData\Local\Programs\Python\Python312\Lib\site-packages\cupy\_environment.py:215: UserWarning: CUDA path could not be detected. Set CUDA_PATH environment variable if CuPy fails to load.
+  warnings.warn(
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+WARNING:Makima.MusicDJ:spotipy not installed ΓÇö MusicDJ disabled.
+Starting Exhaustive Makima Test...
+≡ƒÜÇ Initializing Makima v4 Enhanced Engine...
+[11:11:30] [Commander] [INFO] Registered research agent: Research Agent
+[11:11:30] [Commander] [INFO] Registered code agent: Code Agent
+[11:11:30] [Commander] [INFO] Registered creative agent: Creative Agent
+[11:11:30] [Commander] [INFO] Registered executor agent: Executor Agent
+≡ƒñû Agent Swarm initialized with 5 agents
+[11:11:30] [Commander] [INFO] Registered web_v3 agent: V3 Web Agent
+≡ƒöù Linked V3 Custom Agent: WebAgent
+[11:11:30] [Commander] [INFO] Registered coder_v3 agent: V3 Auto Coder
+≡ƒöù Linked V3 Custom Agent: AutoCoder
+≡ƒº⌐ Contextual Knowledge Graph initialized (Optimized NetworkX Engine)
+≡ƒôè Feedback database initialized
+≡ƒöì Analyzing last 7 days of interactions...
+≡ƒºá Continuous Learning System initialized
+Γ£à Makima v4 fully initialized!
+≡ƒôè Found 5 patterns
+  Learned: general at 5:00 (confidence: 1.00)
+  Learned: general at 15:00 (confidence: 0.70)
+≡ƒöº Initializing Makima tools...
+  Γ£à Response Cache ready
+  Γ£à Context Compressor ready
+  Γ£à Smart File Finder ready (indexing in background)
+  Γ£à Intent Detector ready
+[Proactive] Engine started
+  Γ£à Proactive Engine started
+[Shortcuts] Loaded 0 default shortcuts
+  Γ£à Shortcut Expander ready
+≡ƒöº All tools initialized!
+
+Γ£à Learning complete!
+ΓÜá∩╕Å  CuPy failed to initialize (DLL load failed while importing curand: The specified module could not be found.)
+   (GPU acceleration disabled, using CPU only)
+
+[1/18] Testing: Hello Makima, who are you?
+[Cache] Γ£à Exact hit (1 hits)
+[11:11:32] [Commander] [INFO] Analyzing task: Hello Makima, who are you?
+[11:11:34] [Commander] [INFO] Created plan with 1 subtasks
+[11:11:34] [Research Agent] [INFO] Researching: Find out who Makima is and her role as my personal AI assistant.
+Γ£à Swarm completed in 5.76s
+Γ₧£ Response: Hello Makima, I am your personal AI assistant. How can I help you today?...
+
+[2/18] Testing: Remember that my favorite programming language is Python.
+[Cache] Γ£à Exact hit (1 hits)
+[11:11:38] [Commander] [INFO] Analyzing task: Remember that my favorite programming language is Python.
+[11:11:39] [Commander] [INFO] Created plan with 1 subtasks
+[11:11:39] [Research Agent] [INFO] Researching: Find out what programming language is popular among developers in your region.
+Γ£à Swarm completed in 5.14s
+Γ₧£ Response: I am here, darling. How can I make your day better? ≡ƒî╕...
+
+[3/18] Testing: What is my favorite programming language?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ Response: Opened Google search for 'What is my favorite programming language?' in your browser....
+
+[4/18] Testing: which ai are you using?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ Response: Using Ollama local model (makima-v3) ΓÇö offline mode....
+
+[5/18] Testing: set volume to 30
+[Cache] Γ£à Exact hit (1 hits)
+[11:11:43] [Commander] [INFO] Analyzing task: set volume to 30
+[11:11:46] [Commander] [INFO] Created plan with 2 subtasks
+[11:11:46] [Research Agent] [INFO] Researching: Find information on the topic of AI assistants
+[11:11:46] [Code Agent] [INFO] Coding task: Generate code for a basic chatbot using natural language processing techniques
+[11:12:00] [Code Agent] [WARNING] Generated code failed:   File "C:\Users\kamit\AppData\Local\Temp\tmpc4svvoxd.py", line 1
+    Here's the code for a basic chatbot using natural language processing techniques: 
+        ^
+SyntaxError: unterminated string literal (detected at line 1)
+
+Γ£à Swarm completed in 31.65s
+Γ₧£ Response: I am here to assist you, Makima. How can I make your day better? ≡ƒî╕...
+
+[6/18] Testing: volume up
+[Cache] Γ£à Exact hit (1 hits)
+[11:12:15] [Commander] [INFO] Analyzing task: volume up
+[11:12:20] [Commander] [WARNING] Failed to parse plan, using fallback
+[11:12:20] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 5.50s
+Γ₧£ Response: I am always listening to you, darling....
+
+[7/18] Testing: volume down
+[Cache] Γ£à Exact hit (1 hits)
+[11:12:20] [Commander] [INFO] Analyzing task: volume down
+[11:12:23] [Commander] [WARNING] Failed to parse plan, using fallback
+[11:12:23] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 4.13s
+Γ₧£ Response: I am here to assist you, Makima. What can I do for you today?...
+
+[8/18] Testing: mute volume
+[Cache] Γ£à Exact hit (2 hits)
+[11:12:25] [Commander] [INFO] Analyzing task: mute volume
+[11:12:28] [Commander] [INFO] Created plan with 1 subtasks
+[11:12:28] [Research Agent] [INFO] Researching: Analyze the user's request and break it into subtasks. Available agents: research, code, creative, executor, web_v3, coder_v3.
+Γ£à Swarm completed in 6.27s
+Γ₧£ Response: I am here, darling. How can I make your day better? ≡ƒî╕...
+
+[9/18] Testing: unmute volume
+[Cache] Γ£à Exact hit (1 hits)
+[11:12:31] [Commander] [INFO] Analyzing task: unmute volume
+[11:12:34] [Commander] [WARNING] Failed to parse plan, using fallback
+[11:12:34] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 4.24s
+Γ₧£ Response: I am always here to help you, Makima. What can I assist you with today?...
+
+[10/18] Testing: battery status
+[Cache] Γ£à Exact hit (1 hits)
+[11:12:35] [Commander] [INFO] Analyzing task: battery status
+[11:12:38] [Commander] [WARNING] Failed to parse plan, using fallback
+[11:12:38] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 3.97s
+Γ₧£ Response: I am available to assist you with any questions or concerns. What can I help you with today?...
+
+[11/18] Testing: ram usage
+[Cache] Γ£à Exact hit (1 hits)
+[11:12:39] [Commander] [INFO] Analyzing task: ram usage
+[11:12:41] [Commander] [WARNING] Failed to parse plan, using fallback
+[11:12:41] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 3.39s
+Γ₧£ Response: I am available to help you with your request. What is it that you need assistance with?...
+
+[12/18] Testing: cpu usage
+[Cache] Γ£à Exact hit (1 hits)
+[11:12:42] [Commander] [INFO] Analyzing task: cpu usage
+[11:12:45] [Commander] [INFO] Created plan with 1 subtasks
+[11:12:45] [Research Agent] [INFO] Researching: Find information on CPU usage and its impact on system performance.
+Γ£à Swarm completed in 8.39s
+Γ₧£ Response: I am here to assist you with your request. I have gathered information and synthesized it into this ...
+
+[13/18] Testing: what is my music taste profile?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ Response: No listening data yet. Start playing some music first!...
+
+[14/18] Testing: simulate an investment of $10000 in Apple
+[Cache] Γ£à Exact hit (1 hits)
+
+============================================================
+≡ƒÆ░ INVESTMENT DECISION ANALYSIS
+============================================================
+Asset: investment
+Amount: $5,000.00
+Expected Return: 15.0% annually
+Volatility: 20.0%
+Time Horizon: 365 days (1.0 years)
+============================================================
+
+≡ƒÆ░ Simulating 10,000 investment scenarios...
+   ≡ƒÄ« Using GPU: NVIDIA GeForce RTX 3050
+   Γ£à Complete in 0.09s (114553 sims/sec)
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: Γ£à RECOMMENDED
+CONFIDENCE: HIGH
+
+REASONING:
+Strong EV ($1,225) with 78.9% success rate
+
+KEY METRICS:
+- Success Rate: 78.9%
+- Expected Value: 1,224.60
+- Risk Level: HIGH
+- Best Case: 9,526.42
+- Worst Case: -2,477.39
+- Median Outcome: 1,055.65
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 7,894 (78.9%)
+- Negative outcomes: 2,106 (21.1%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 3,951.71
+- 75th percentile: 2,096.12
+- 50th percentile (median): 1,055.65
+- 25th percentile: 157.74
+- 5th percentile (pessimistic): -903.40
+
+RISK ANALYSIS:
+- Standard Deviation: 1,505.96
+- Value at Risk (95%): -903.40
+- Value at Risk (99%): -1,511.02
+
+============================================================
+
+Γ₧£ Response: ============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+===========...
+
+[15/18] Testing: simulate a job change
+[Cache] Γ£à Exact hit (1 hits)
+
+============================================================
+≡ƒÆ╝ JOB CHANGE DECISION ANALYSIS
+============================================================
+Current Job: $80,000/year
+New Job: $95,000/year
+Time Horizon: 5 years
+============================================================
+
+≡ƒÆ╝ Simulating 10,000 career paths over 5 years...
+   Γ£à Complete in 0.03s
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ΓÜá∩╕Å  WEAK PASS
+CONFIDENCE: MEDIUM
+
+REASONING:
+High success rate (62.4%) but negative EV ($-1,787) ΓÇö check your assumptions
+
+KEY METRICS:
+- Success Rate: 62.4%
+- Expected Value: -1,787.28
+- Risk Level: HIGH
+- Best Case: 524,934.97
+- Worst Case: -424,730.86
+- Median Outcome: 100,204.10
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 6,240 (62.4%)
+- Negative outcomes: 3,736 (37.4%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 362,534.97
+- 75th percentile: 100,204.10
+- 50th percentile (median): 100,204.10
+- 25th percentile: -125,243.36
+- 5th percentile (pessimistic): -424,730.86
+
+RISK ANALYSIS:
+- Standard Deviation: 219,857.40
+- Value at Risk (95%): -424,730.86
+- Value at Risk (99%): -424,730.86
+
+============================================================
+
+Γ₧£ Response: ============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+===========...
+
+[16/18] Testing: simulate a business venture
+[Cache] Γ£à Exact hit (1 hits)
+
+============================================================
+≡ƒÜÇ BUSINESS VENTURE ANALYSIS
+============================================================
+Investment: $50,000.00
+Success Rate: 40.0%
+Success Return: 5.0x investment
+Failure Loss: 100% of investment
+============================================================
+
+≡ƒÄ▓ Simulating 10,000 binary outcomes...
+   Γ£à Complete in 0.00s
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ≡ƒÄ▓ HIGH RISK / HIGH REWARD
+CONFIDENCE: LOW
+
+REASONING:
+Positive EV ($48,425) but 39.4% success ΓÇö lottery-style odds
+
+KEY METRICS:
+- Success Rate: 39.4%
+- Expected Value: 48,425.00
+- Risk Level: HIGH
+- Best Case: 200,000.00
+- Worst Case: -50,000.00
+- Median Outcome: -50,000.00
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 3,937 (39.4%)
+- Negative outcomes: 6,063 (60.6%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 200,000.00
+- 75th percentile: 200,000.00
+- 50th percentile (median): -50,000.00
+- 25th percentile: -50,000.00
+- 5th percentile (pessimistic): -50,000.00
+
+RISK ANALYSIS:
+- Standard Deviation: 122,142.41
+- Value at Risk (95%): -50,000.00
+- Value at Risk (99%): -50,000.00
+
+============================================================
+
+Γ₧£ Response: ============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+===========...
+
+[17/18] Testing: set my default browser to Chrome
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ Response: Got it! I'll use Chrome for browser from now on....
+
+[18/18] Testing: list my preferences
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ Response: Your preferences:
+ΓÇó command_at_15: general
+ΓÇó command_at_5: general
+ΓÇó volume: 30
+ΓÇó browser: Chrome...
+
+All tests complete.

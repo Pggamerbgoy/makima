@@ -1,0 +1,27 @@
+{
+    "name": "Dark Cyber",
+    "colors": {
+        "background": "#0a0a0a",
+        "surface": "#0f0f0f",
+        "surface_elevated": "#1a1a1a",
+        "primary": "#00d9ff",
+        "primary_dark": "#0099ff",
+        "secondary": "#1a1a2e",
+        "secondary_dark": "#16213e",
+        "accent": "#00ff88",
+        "text": "#ffffff",
+        "text_secondary": "#aaaaaa",
+        "text_dim": "#666666",
+        "border": "#2a2a2a",
+        "border_light": "#3a3a3a",
+        "user_bubble": "#00d9ff",
+        "user_bubble_end": "#0099ff",
+        "makima_bubble": "#1e1e2e",
+        "makima_bubble_border": "#2a2a3e",
+        "input_bg": "#2a2a2a",
+        "button_hover": "#3a3a3a",
+        "error": "#ff3366",
+        "warning": "#FFA500",
+        "success": "#00ff88"
+    }
+}

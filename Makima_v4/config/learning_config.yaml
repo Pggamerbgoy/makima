@@ -1,0 +1,27 @@
+# Learning System Configuration
+# Makima v4 - Continuous Learning Config
+
+database:
+  path: data/feedback.db
+  backup_interval: 7  # days
+
+learning:
+  enabled: true
+  auto_learn_interval: 86400  # 24 hours in seconds
+  min_interactions_to_learn: 10
+  min_pattern_frequency: 3
+  min_confidence_to_apply: 0.7
+
+patterns:
+  time_based: true
+  command_sequence: true
+  context_based: true
+  response_style: true
+
+preferences:
+  min_confidence_to_use: 0.6
+  max_preferences: 100
+
+background:
+  enabled: true
+  check_interval: 3600  # 1 hour in seconds

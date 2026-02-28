@@ -1,0 +1,17 @@
+{
+  "explicit": {
+    "command_at_15": "general",
+    "command_at_5": "general",
+    "volume": "25",
+    "browser": "chrome",
+    "command_at_6": "general",
+    "browser_test": "Firefox",
+    "editor_test": "VSCode",
+    "command_at_11": "general"
+  },
+  "history": {
+    "music_test": {
+      "lofi": 15
+    }
+  }
+}

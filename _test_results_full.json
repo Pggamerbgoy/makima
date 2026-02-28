@@ -1,0 +1,1152 @@
+{
+  "timestamp": "2026-02-28T17:04:09.249610",
+  "summary": {
+    "total": 190,
+    "passed": 190,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": "100.0%"
+  },
+  "results": [
+    {
+      "label": "Save and recall exact note",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.0009999275207519531
+    },
+    {
+      "label": "Fuzzy partial key recall",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Semantic memory search",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.00099945068359375
+    },
+    {
+      "label": "Save conversation to corpus",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.0010230541229248047
+    },
+    {
+      "label": "Build memory context for AI",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Get memory stats dict",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Format stats as readable string",
+      "module": "memory",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "AIHandler initializes",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set persona: makima",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set persona: normal",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set persona: date",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set persona: invalid \u2192 error msg",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Add / clear history",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "History trimming works",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Update awareness context",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Build prompt string",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0010025501251220703
+    },
+    {
+      "label": "Parse JSON response",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Parse plain text fallback",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Parse wrapped JSON (```json)",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "chat() returns (str, str)",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 1.6717700958251953
+    },
+    {
+      "label": "generate_response() works",
+      "module": "ai",
+      "status": "pass",
+      "elapsed": 0.12835097312927246
+    },
+    {
+      "label": "Time query",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0032989978790283203
+    },
+    {
+      "label": "Date query",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Day query",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0015041828155517578
+    },
+    {
+      "label": "Remember note",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Recall note",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Memory stats",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Volume set to number",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 7.152098655700684
+    },
+    {
+      "label": "Volume up",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.1014719009399414
+    },
+    {
+      "label": "Volume down",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.10109090805053711
+    },
+    {
+      "label": "Mute",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.10123205184936523
+    },
+    {
+      "label": "Unmute (not mute!) \u2014 Bug #6 check",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.10089588165283203
+    },
+    {
+      "label": "Screenshot",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.08428120613098145
+    },
+    {
+      "label": "CPU usage",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 1.0014312267303467
+    },
+    {
+      "label": "RAM usage",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0005037784576416016
+    },
+    {
+      "label": "Battery status",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "System status",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Persona switch",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Clear history",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Which AI are you using",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Use Ollama mode",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Morning greeting",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Web search command",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.563992977142334
+    },
+    {
+      "label": "AI fallback for open questions",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.9562044143676758
+    },
+    {
+      "label": "List learned skills",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Background status",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "List preferences",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0006196498870849609
+    },
+    {
+      "label": "Set preference",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.001007080078125
+    },
+    {
+      "label": "Learning report",
+      "module": "router",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Manager starts",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Status dict has all keys",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Status string readable",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "handle() time query",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0015065670013427734
+    },
+    {
+      "label": "handle() memory command",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 1.3656361103057861
+    },
+    {
+      "label": "handle() volume up",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.10206294059753418
+    },
+    {
+      "label": "handle() AI chat fallback",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 1.0142412185668945
+    },
+    {
+      "label": "Event hooks fire",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.707808256149292
+    },
+    {
+      "label": "update_context() works",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Convenience methods (open/search)",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.5761435031890869
+    },
+    {
+      "label": "Decision question detection",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Web search gating (Bug #10)",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Memory saved after handle() \u2014 Bug #3",
+      "module": "manager",
+      "status": "pass",
+      "elapsed": 2.1595213413238525
+    },
+    {
+      "label": "detect: 'open chrome'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'launch vscode'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'close spotify'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'play some lofi music'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'play metallica'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'search for python tutorials'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.001504659652709961
+    },
+    {
+      "label": "detect: 'remind me to call mom at 6pm'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'volume up'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'take a screenshot'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'what time is it'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'explain machine learning'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'hey makima'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'write a python function'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "detect: 'send email to john'",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Confidence always 0\u20131",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Missing slots detected",
+      "module": "intent",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Store and exact get",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.0009992122650146484
+    },
+    {
+      "label": "Fuzzy match",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.0015048980712890625
+    },
+    {
+      "label": "Miss returns None",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Stats dict",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Invalidate entry",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.001004934310913086
+    },
+    {
+      "label": "Permanent entry",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.0010304450988769531
+    },
+    {
+      "label": "Clear all",
+      "module": "cache",
+      "status": "pass",
+      "elapsed": 0.00099945068359375
+    },
+    {
+      "label": "Add and expand shortcut",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0010001659393310547
+    },
+    {
+      "label": "Non-shortcut passthrough",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Case-insensitive expand",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0010404586791992188
+    },
+    {
+      "label": "List all shortcuts",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0010058879852294922
+    },
+    {
+      "label": "Remove shortcut",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0009992122650146484
+    },
+    {
+      "label": "Record usage",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0010051727294921875
+    },
+    {
+      "label": "Get suggestions",
+      "module": "shortcuts",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Engine initializes",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "update_context stores values",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Battery critical \u2192 priority 3",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Battery low \u2192 suggestion",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Clipboard URL \u2192 suggestion",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "All-clear \u2192 no crash",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Cooldown prevents repeat fires",
+      "module": "proactive",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set and get preference",
+      "module": "prefs",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "List preferences",
+      "module": "prefs",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Record usage \u2192 learns",
+      "module": "prefs",
+      "status": "pass",
+      "elapsed": 0.001999378204345703
+    },
+    {
+      "label": "Clear preference",
+      "module": "prefs",
+      "status": "pass",
+      "elapsed": 0.0010006427764892578
+    },
+    {
+      "label": "Set volume to 30",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 6.580413579940796
+    },
+    {
+      "label": "Volume up",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.1013953685760498
+    },
+    {
+      "label": "Volume down",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.10088396072387695
+    },
+    {
+      "label": "Mute",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.10122370719909668
+    },
+    {
+      "label": "Unmute",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.10113954544067383
+    },
+    {
+      "label": "CPU usage",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 1.0007269382476807
+    },
+    {
+      "label": "RAM usage",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Battery status",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Screenshot",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.06789994239807129
+    },
+    {
+      "label": "Maximize window",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.10185718536376953
+    },
+    {
+      "label": "Minimize window",
+      "module": "system",
+      "status": "pass",
+      "elapsed": 0.10152387619018555
+    },
+    {
+      "label": "Scan installed apps",
+      "module": "app_control",
+      "status": "pass",
+      "elapsed": 0.00859832763671875
+    },
+    {
+      "label": "Open Notepad",
+      "module": "app_control",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Open with fuzzy name",
+      "module": "app_control",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Close Notepad",
+      "module": "app_control",
+      "status": "pass",
+      "elapsed": 0.006030559539794922
+    },
+    {
+      "label": "Open nonexistent \u2014 no crash",
+      "module": "app_control",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Add reminder (future)",
+      "module": "reminder",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Add reminder (invalid time)",
+      "module": "reminder",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "List reminders",
+      "module": "reminder",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Start focus mode",
+      "module": "focus",
+      "status": "pass",
+      "elapsed": 0.006039142608642578
+    },
+    {
+      "label": "Stop focus mode",
+      "module": "focus",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Investment simulation",
+      "module": "quantum",
+      "status": "pass",
+      "elapsed": 0.030861377716064453
+    },
+    {
+      "label": "Job change simulation",
+      "module": "quantum",
+      "status": "pass",
+      "elapsed": 0.008199930191040039
+    },
+    {
+      "label": "Business venture sim",
+      "module": "quantum",
+      "status": "pass",
+      "elapsed": 0.0029981136322021484
+    },
+    {
+      "label": "Statistics dict present",
+      "module": "quantum",
+      "status": "pass",
+      "elapsed": 0.0183255672454834
+    },
+    {
+      "label": "Web search",
+      "module": "web",
+      "status": "pass",
+      "elapsed": 0.47382569313049316
+    },
+    {
+      "label": "Open URL",
+      "module": "web",
+      "status": "pass",
+      "elapsed": 0.014544963836669922
+    },
+    {
+      "label": "No crash on any input",
+      "module": "mishearing",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Passthrough clean input",
+      "module": "mishearing",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Known mishearing fix",
+      "module": "mishearing",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "find() returns list",
+      "module": "files",
+      "status": "pass",
+      "elapsed": 0.004081249237060547
+    },
+    {
+      "label": "find_recent() returns list",
+      "module": "files",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "stats() works",
+      "module": "files",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "No results for garbage query",
+      "module": "files",
+      "status": "pass",
+      "elapsed": 0.01327967643737793
+    },
+    {
+      "label": "Get screen time",
+      "module": "health",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Log habit",
+      "module": "health",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Get habits summary",
+      "module": "health",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Health summary",
+      "module": "health",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set water reminder",
+      "module": "health",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Set break reminder",
+      "module": "health",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "List macros",
+      "module": "macros",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Run nonexistent gracefully",
+      "module": "macros",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Detect English",
+      "module": "translator",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Detect Hindi/Devanagari",
+      "module": "translator",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Enable and disable",
+      "module": "translator",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Get status",
+      "module": "translator",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Quick scan",
+      "module": "security",
+      "status": "pass",
+      "elapsed": 0.030454158782958984
+    },
+    {
+      "label": "Scan downloads",
+      "module": "security",
+      "status": "pass",
+      "elapsed": 0.07276248931884766
+    },
+    {
+      "label": "MusicManager initializes",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.003932476043701172
+    },
+    {
+      "label": "MusicManager now_playing()",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.003134489059448242
+    },
+    {
+      "label": "AppManager open()",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.0005145072937011719
+    },
+    {
+      "label": "SystemManager volume_up()",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.017647504806518555
+    },
+    {
+      "label": "SystemManager screenshot()",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.11581635475158691
+    },
+    {
+      "label": "DecisionSimulator analyze()",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.24139666557312012
+    },
+    {
+      "label": "WebSearchManager search()",
+      "module": "sub_mgr",
+      "status": "pass",
+      "elapsed": 0.6156013011932373
+    },
+    {
+      "label": "Bug 1: No top-level MakimaV4 import",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0010006427764892578
+    },
+    {
+      "label": "Bug 2: No double save in process_input",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 3: Memory saved in handle()",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 4: _get_dj uses self._ method call",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 5: _get_qs uses self._ method call",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 6: unmute doesn't trigger mute handler",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.11487984657287598
+    },
+    {
+      "label": "Bug 7: command_router_v2.py has content",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 8: adaptive re-index threshold",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 9: no local imports in generate_response",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "Bug 10: web search gating correct",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.07253789901733398
+    },
+    {
+      "label": "Bug 11: voice loop gives feedback on silence",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0010004043579101562
+    },
+    {
+      "label": "Bug 12: no duplicate module imports",
+      "module": "regression",
+      "status": "pass",
+      "elapsed": 0.0
+    },
+    {
+      "label": "E2E: Hello Makima, who are you?",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 1.643517255783081
+    },
+    {
+      "label": "E2E: Remember that my favorite color is crimson",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.010256767272949219
+    },
+    {
+      "label": "E2E: What is my favorite color?",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.8888161182403564
+    },
+    {
+      "label": "E2E: Which AI are you using?",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.002004384994506836
+    },
+    {
+      "label": "E2E: Set volume to 25",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.0022385120391845703
+    },
+    {
+      "label": "E2E: Volume up",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.10223197937011719
+    },
+    {
+      "label": "E2E: Volume down",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.10285663604736328
+    },
+    {
+      "label": "E2E: Mute",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.10225057601928711
+    },
+    {
+      "label": "E2E: Unmute",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.1015176773071289
+    },
+    {
+      "label": "E2E: Battery status",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.0020270347595214844
+    },
+    {
+      "label": "E2E: RAM usage",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.0015575885772705078
+    },
+    {
+      "label": "E2E: CPU usage",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 1.0118763446807861
+    },
+    {
+      "label": "E2E: What is my music taste profile?",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 3.0343685150146484
+    },
+    {
+      "label": "E2E: Set my default browser to Chrome",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.0030260086059570312
+    },
+    {
+      "label": "E2E: List my preferences",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.001004934310913086
+    },
+    {
+      "label": "E2E: Search for Python programming",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.44973015785217285
+    },
+    {
+      "label": "E2E: What time is it",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.0019996166229248047
+    },
+    {
+      "label": "E2E: Simulate an investment of $5000 in Apple",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.10881686210632324
+    },
+    {
+      "label": "E2E: Good morning",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.002511739730834961
+    },
+    {
+      "label": "E2E: Memory stats",
+      "module": "e2e",
+      "status": "pass",
+      "elapsed": 0.002000093460083008
+    }
+  ]
+}

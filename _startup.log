@@ -1,0 +1,71 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+2026-02-27 21:21:48,534 [INFO] Makima: 🌸 Initializing Makima...
+2026-02-27 21:21:48,535 [INFO] Makima.Manager: 🌸 MakimaManager initializing...
+2026-02-27 21:21:48,539 [INFO] Makima.Memory: 🧠 Memory loaded. 138 conversation entries indexed.
+2026-02-27 21:21:49,185 [INFO] Makima.AI: ✅ Gemini backend ready (gemini-2.0-flash).
+2026-02-27 21:21:49,187 [WARNING] Makima.MusicDJ: spotipy not installed — MusicDJ disabled.
+2026-02-27 21:21:49,187 [INFO] Makima.MusicDJ: 🎵 MusicDJ initialized.
+2026-02-27 21:21:49,187 [INFO] Makima.Manager: 🎵 MusicManager ready (MusicDJ)
+2026-02-27 21:21:49,188 [WARNING] Makima.Manager: Spotify unavailable: cannot import name 'SpotifyController' from 'systems.spotify_control' (C:\code\makima_v3\systems\spotify_control.py)
+2026-02-27 21:21:49,189 [INFO] Makima.AppControl: 📦 App index loaded: 136 apps.
+2026-02-27 21:21:49,189 [INFO] Makima.Manager: 📱 AppManager ready
+2026-02-27 21:21:49,223 [INFO] Makima.Manager: ⚙️  SystemManager ready
+🚀 Initializing Makima v4 Enhanced Engine...
+[21:21:49] [Commander] [INFO] Registered research agent: Research Agent
+[21:21:49] [Commander] [INFO] Registered code agent: Code Agent
+[21:21:49] [Commander] [INFO] Registered creative agent: Creative Agent
+[21:21:49] [Commander] [INFO] Registered executor agent: Executor Agent
+🤖 Agent Swarm initialized with 5 agents
+[21:21:49] [Commander] [INFO] Registered web_v3 agent: V3 Web Agent
+🔗 Linked V3 Custom Agent: WebAgent
+[21:21:49] [Commander] [INFO] Registered coder_v3 agent: V3 Auto Coder
+🔗 Linked V3 Custom Agent: AutoCoder
+🧩 Contextual Knowledge Graph initialized (Optimized NetworkX Engine)
+📊 Feedback database initialized
+🔍 Analyzing last 7 days of interactions...
+🧠 Continuous Learning System initialized
+✅ Makima v4 fully initialized!
+2026-02-27 21:21:49,226 [INFO] Makima.Manager: 🤖 AgentManager ready (V4 swarm)
+2026-02-27 21:21:49,226 [INFO] Makima.AppControl: 📦 App index loaded: 136 apps.
+2026-02-27 21:21:49,226 [WARNING] Makima.Spotify: spotipy not installed. Spotify disabled.
+📊 Found 4 patterns
+  Learned: general at 15:00 (confidence: 0.70)
+2026-02-27 21:21:49,231 [INFO] Makima.Preferences: Explicit preference: command_at_15 → general
+✅ Learning complete!
+2026-02-27 21:21:50,000 [INFO] Makima.Cloud: No Google credentials file found. Cloud sync disabled.
+2026-02-27 21:21:50,000 [INFO] Makima.Manager: 🤖 AgentManager ready (CommandRouter)
+2026-02-27 21:21:50,001 [INFO] Makima.Manager: 🧠 PreferencesManager ready
+2026-02-27 21:21:50,001 [WARNING] Makima.Manager: DecisionEngine unavailable: No module named 'tools'
+🔧 Initializing Makima tools...
+  ✅ Response Cache ready
+  ✅ Context Compressor ready
+  ✅ Smart File Finder ready (indexing in background)
+  ✅ Intent Detector ready
+[Proactive] Engine started
+  ✅ Proactive Engine started
+[Shortcuts] Loaded 0 default shortcuts
+  ✅ Shortcut Expander ready
+🔧 All tools initialized!
+
+2026-02-27 21:21:50,003 [INFO] Makima.Manager: 🛠️  ToolsManager ready
+⚠️  CuPy failed to initialize (DLL load failed while importing curand: The specified module could not be found.)
+   (GPU acceleration disabled, using CPU only)
+2026-02-27 21:21:51,418 [INFO] Makima.Manager: 🎲 DecisionSimulator ready
+2026-02-27 21:21:51,418 [INFO] Makima.Manager: 🌐 WebSearchManager ready
+2026-02-27 21:21:51,418 [INFO] Makima.Manager: ✅ MakimaManager ready.
+2026-02-27 21:21:51,418 [INFO] Makima.Manager: 🌸 MakimaManager started.
+2026-02-27 21:21:51,418 [INFO] Makima.TTS: TTS: Using Edge TTS (Neural, online).
+2026-02-27 21:21:51,439 [INFO] Makima.TTS: ✅ Edge TTS engine ready (pipelined stream mode).
+2026-02-27 21:21:51,441 [INFO] Makima: 🔄 Started 3 background monitors.
+2026-02-27 21:21:51,491 [INFO] Makima: 🖥️  HUD started.
+2026-02-27 21:21:51,498 [INFO] Makima.WebDashboard: 🌐 Web dashboard running at http://localhost:8000
+2026-02-27 21:21:51,498 [INFO] Makima: ✅ Makima is ready!
+
+🌸 Makima: Hey! Makima here. How can I help you?
+
+💬 Text mode active. Type your commands (or 'quit' to exit).
+
+You: 
+🌸 Makima: Goodbye!
+2026-02-27 21:21:55,582 [WARNING] Makima.TTS: EdgeTTS playback error: Audio device hasn't been opened

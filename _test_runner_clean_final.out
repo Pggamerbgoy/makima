@@ -1,0 +1,278 @@
+spotipy not installed ΓÇö MusicDJ disabled.
+spotipy not installed. Spotify disabled.
+spotipy not installed. Spotify disabled.
+C:\Users\kamit\AppData\Local\Programs\Python\Python312\Lib\site-packages\cupy\_environment.py:215: UserWarning: CUDA path could not be detected. Set CUDA_PATH environment variable if CuPy fails to load.
+  warnings.warn(
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+WARNING:Makima.MusicDJ:spotipy not installed ΓÇö MusicDJ disabled.
+Starting Exhaustive Makima Test...
+≡ƒÜÇ Initializing Makima v4 Enhanced Engine...
+[10:55:58] [Commander] [INFO] Registered research agent: Research Agent
+[10:55:58] [Commander] [INFO] Registered code agent: Code Agent
+[10:55:58] [Commander] [INFO] Registered creative agent: Creative Agent
+[10:55:58] [Commander] [INFO] Registered executor agent: Executor Agent
+≡ƒñû Agent Swarm initialized with 5 agents
+[10:55:58] [Commander] [INFO] Registered web_v3 agent: V3 Web Agent
+≡ƒöù Linked V3 Custom Agent: WebAgent
+[10:55:58] [Commander] [INFO] Registered coder_v3 agent: V3 Auto Coder
+≡ƒöù Linked V3 Custom Agent: AutoCoder
+≡ƒº⌐ Contextual Knowledge Graph initialized (Optimized NetworkX Engine)
+≡ƒôè Feedback database initialized
+≡ƒöì Analyzing last 7 days of interactions...
+≡ƒºá Continuous Learning System initialized
+Γ£à Makima v4 fully initialized!
+≡ƒôè Found 5 patterns
+  Learned: general at 5:00 (confidence: 1.00)
+  Learned: general at 15:00 (confidence: 0.70)
+Γ£à Learning complete!
+≡ƒöº Initializing Makima tools...
+  Γ£à Response Cache ready
+  Γ£à Context Compressor ready
+[FileFinder] Indexing files...
+  Γ£à Smart File Finder ready (indexing in background)
+  Γ£à Intent Detector ready
+[Proactive] Engine started
+  Γ£à Proactive Engine started
+[Shortcuts] Loaded 0 default shortcuts
+  Γ£à Shortcut Expander ready
+≡ƒöº All tools initialized!
+
+[FileFinder] Indexed 134 files
+ΓÜá∩╕Å  CuPy failed to initialize (DLL load failed while importing curand: The specified module could not be found.)
+   (GPU acceleration disabled, using CPU only)
+
+[1/18] Testing: Hello Makima, who are you?
+[Tools] Intent(chat, conf=74%, entities={}, missing=[])
+[10:56:00] [Commander] [INFO] Analyzing task: Hello Makima, who are you?
+[10:56:01] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:56:01] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 2.78s
+Γ₧£ Response: Hello Makima, I am your personal AI assistant. Not a generic chatbot. Mine....
+
+[2/18] Testing: Remember that my favorite programming language is Python.
+[Tools] Intent(write_code, conf=74%, entities={}, missing=['task_description'])
+Γ₧£ Response: Got it! I'll remember: my favorite programming language is python....
+
+[3/18] Testing: What is my favorite programming language?
+[Tools] Intent(get_info, conf=88%, entities={'topic': 'my favorite programming language?'}, missing=[])
+Γ₧£ Response: I have noted. Your favorite color is crimson red....
+
+[4/18] Testing: which ai are you using?
+[Tools] Intent(chat, conf=74%, entities={}, missing=[])
+Γ₧£ Response: Using Ollama local model (makima-v3) ΓÇö offline mode....
+
+[5/18] Testing: set volume to 30
+[Tools] Intent(system_control, conf=73%, entities={}, missing=['action'])
+Γ₧£ Response: Volume approximately set to 30%....
+
+[6/18] Testing: volume up
+[Tools] Intent(system_control, conf=73%, entities={'action': 'volume up'}, missing=[])
+Γ₧£ Response: Volume increased....
+
+[7/18] Testing: volume down
+[Tools] Intent(system_control, conf=73%, entities={'action': 'volume down'}, missing=[])
+Γ₧£ Response: Volume decreased....
+
+[8/18] Testing: mute volume
+[Tools] Intent(system_control, conf=73%, entities={'action': 'mute'}, missing=[])
+Γ₧£ Response: Muted....
+
+[9/18] Testing: unmute volume
+[Tools] Intent(system_control, conf=73%, entities={'action': 'mute'}, missing=[])
+Γ₧£ Response: Muted....
+
+[10/18] Testing: battery status
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+Γ₧£ Response: No battery detected (desktop)....
+
+[11/18] Testing: ram usage
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+Γ₧£ Response: RAM usage: 11.7 GB used out of 15.8 GB (73.6%)....
+
+[12/18] Testing: cpu usage
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+Γ₧£ Response: CPU usage is at 7.0%....
+
+[13/18] Testing: what is my music taste profile?
+[Tools] Intent(get_info, conf=88%, entities={'topic': 'my music taste profile?'}, missing=[])
+Γ₧£ Response: No listening data yet. Start playing some music first!...
+
+[14/18] Testing: simulate an investment of $10000 in Apple
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+
+============================================================
+≡ƒÆ░ INVESTMENT DECISION ANALYSIS
+============================================================
+Asset: investment
+Amount: $5,000.00
+Expected Return: 15.0% annually
+Volatility: 20.0%
+Time Horizon: 365 days (1.0 years)
+============================================================
+
+≡ƒÆ░ Simulating 10,000 investment scenarios...
+   ≡ƒÄ« Using GPU: NVIDIA GeForce RTX 3050
+   Γ£à Complete in 0.08s (124054 sims/sec)
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: Γ£à RECOMMENDED
+CONFIDENCE: HIGH
+
+REASONING:
+Strong EV ($1,220) with 78.5% success rate
+
+KEY METRICS:
+- Success Rate: 78.5%
+- Expected Value: 1,220.18
+- Risk Level: HIGH
+- Best Case: 9,162.14
+- Worst Case: -2,647.50
+- Median Outcome: 1,046.80
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 7,851 (78.5%)
+- Negative outcomes: 2,149 (21.5%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 3,994.40
+- 75th percentile: 2,087.36
+- 50th percentile (median): 1,046.80
+- 25th percentile: 146.61
+- 5th percentile (pessimistic): -926.26
+
+RISK ANALYSIS:
+- Standard Deviation: 1,511.09
+- Value at Risk (95%): -926.26
+- Value at Risk (99%): -1,512.38
+
+============================================================
+
+Γ₧£ Response: ============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+===========...
+
+[15/18] Testing: simulate a job change
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+
+============================================================
+≡ƒÆ╝ JOB CHANGE DECISION ANALYSIS
+============================================================
+Current Job: $80,000/year
+New Job: $95,000/year
+Time Horizon: 5 years
+============================================================
+
+≡ƒÆ╝ Simulating 10,000 career paths over 5 years...
+   Γ£à Complete in 0.03s
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ΓÜá∩╕Å  WEAK PASS
+CONFIDENCE: MEDIUM
+
+REASONING:
+High success rate (61.5%) but negative EV ($-7,157) ΓÇö check your assumptions
+
+KEY METRICS:
+- Success Rate: 61.5%
+- Expected Value: -7,157.00
+- Risk Level: HIGH
+- Best Case: 524,934.97
+- Worst Case: -424,730.86
+- Median Outcome: 100,204.10
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 6,154 (61.5%)
+- Negative outcomes: 3,816 (38.2%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 362,534.97
+- 75th percentile: 100,204.10
+- 50th percentile (median): 100,204.10
+- 25th percentile: -162,400.00
+- 5th percentile (pessimistic): -424,730.86
+
+RISK ANALYSIS:
+- Standard Deviation: 221,550.29
+- Value at Risk (95%): -424,730.86
+- Value at Risk (99%): -424,730.86
+
+============================================================
+
+Γ₧£ Response: ============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+===========...
+
+[16/18] Testing: simulate a business venture
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+
+============================================================
+≡ƒÜÇ BUSINESS VENTURE ANALYSIS
+============================================================
+Investment: $50,000.00
+Success Rate: 40.0%
+Success Return: 5.0x investment
+Failure Loss: 100% of investment
+============================================================
+
+≡ƒÄ▓ Simulating 10,000 binary outcomes...
+   Γ£à Complete in 0.00s
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ≡ƒÄ▓ HIGH RISK / HIGH REWARD
+CONFIDENCE: LOW
+
+REASONING:
+Positive EV ($49,650) but 39.9% success ΓÇö lottery-style odds
+
+KEY METRICS:
+- Success Rate: 39.9%
+- Expected Value: 49,650.00
+- Risk Level: HIGH
+- Best Case: 200,000.00
+- Worst Case: -50,000.00
+- Median Outcome: -50,000.00
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 3,986 (39.9%)
+- Negative outcomes: 6,014 (60.1%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 200,000.00
+- 75th percentile: 200,000.00
+- 50th percentile (median): -50,000.00
+- 25th percentile: -50,000.00
+- 5th percentile (pessimistic): -50,000.00
+
+RISK ANALYSIS:
+- Standard Deviation: 122,402.52
+- Value at Risk (95%): -50,000.00
+- Value at Risk (99%): -50,000.00
+
+============================================================
+
+Γ₧£ Response: ============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+===========...
+
+[17/18] Testing: set my default browser to Chrome
+[Tools] Intent(search_web, conf=73%, entities={}, missing=['query'])
+Γ₧£ Response: Got it! I'll use chrome for browser from now on....
+
+[18/18] Testing: list my preferences
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+Γ₧£ Response: Your preferences:
+ΓÇó command_at_15: general
+ΓÇó command_at_5: general
+ΓÇó volume: 30
+ΓÇó browser: chrome...
+
+All tests complete.

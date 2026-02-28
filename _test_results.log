@@ -1,0 +1,167 @@
+
+[1/18] CMD: Hello Makima, who are you?
+RES: I am Makima — your personal AI assistant. Not a generic chatbot. Mine.
+
+[2/18] CMD: Remember that my favorite programming language is Python.
+RES: Got it! I'll remember: my favorite programming language is python.
+
+[3/18] CMD: What is my favorite programming language?
+RES: Your favorite programming language is Python.
+
+[4/18] CMD: which ai are you using?
+RES: Using Ollama local model (makima-v3) — offline mode.
+
+[5/18] CMD: set volume to 30
+RES: Got it! I'll use 30 for volume from now on.
+
+[6/18] CMD: volume up
+RES: Volume increased.
+
+[7/18] CMD: volume down
+RES: Volume decreased.
+
+[8/18] CMD: mute volume
+RES: Muted.
+
+[9/18] CMD: unmute volume
+RES: Unmuted.
+
+[10/18] CMD: battery status
+RES: No battery detected (desktop).
+
+[11/18] CMD: ram usage
+RES: RAM usage: 11.2 GB used out of 15.8 GB (70.5%).
+
+[12/18] CMD: cpu usage
+RES: CPU usage is at 9.3%.
+
+[13/18] CMD: what is my music taste profile?
+RES: I don't have any information about your personal preferences or tastes. Would you like to share them with me?
+
+[14/18] CMD: simulate an investment of $10000 in Apple
+RES: ============================================================
+🎯 QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ✅ RECOMMENDED
+CONFIDENCE: HIGH
+
+REASONING:
+Strong EV ($1,212) with 77.9% success rate
+
+KEY METRICS:
+- Success Rate: 77.9%
+- Expected Value: 1,212.12
+- Risk Level: HIGH
+- Best Case: 8,574.15
+- Worst Case: -3,080.89
+- Median Outcome: 1,046.15
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 7,787 (77.9%)
+- Negative outcomes: 2,213 (22.1%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 3,950.73
+- 75th percentile: 2,114.76
+- 50th percentile (median): 1,046.15
+- 25th percentile: 126.05
+- 5th percentile (pessimistic): -965.49
+
+RISK ANALYSIS:
+- Standard Deviation: 1,523.45
+- Value at Risk (95%): -965.49
+- Value at Risk (99%): -1,502.70
+
+============================================================
+
+Expected value: $1,212 | Success rate: 77.9%
+
+[15/18] CMD: simulate a job change
+RES: ============================================================
+🎯 QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ⚠️  WEAK PASS
+CONFIDENCE: MEDIUM
+
+REASONING:
+High success rate (62.2%) but negative EV ($-4,347) — check your assumptions
+
+KEY METRICS:
+- Success Rate: 62.2%
+- Expected Value: -4,346.95
+- Risk Level: HIGH
+- Best Case: 524,934.97
+- Worst Case: -424,730.86
+- Median Outcome: 100,204.10
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 6,221 (62.2%)
+- Negative outcomes: 3,756 (37.6%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 362,534.97
+- 75th percentile: 100,204.10
+- 50th percentile (median): 100,204.10
+- 25th percentile: -125,243.36
+- 5th percentile (pessimistic): -424,730.86
+
+RISK ANALYSIS:
+- Standard Deviation: 219,394.49
+- Value at Risk (95%): -424,730.86
+- Value at Risk (99%): -424,730.86
+
+============================================================
+
+Expected value: $-4,347 | Success rate: 62.2%
+
+[16/18] CMD: simulate a business venture
+RES: ============================================================
+🎯 QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: 🎲 HIGH RISK / HIGH REWARD
+CONFIDENCE: LOW
+
+REASONING:
+Positive EV ($49,250) but 39.7% success — lottery-style odds
+
+KEY METRICS:
+- Success Rate: 39.7%
+- Expected Value: 49,250.00
+- Risk Level: HIGH
+- Best Case: 200,000.00
+- Worst Case: -50,000.00
+- Median Outcome: -50,000.00
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 3,970 (39.7%)
+- Negative outcomes: 6,030 (60.3%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 200,000.00
+- 75th percentile: 200,000.00
+- 50th percentile (median): -50,000.00
+- 25th percentile: -50,000.00
+- 5th percentile (pessimistic): -50,000.00
+
+RISK ANALYSIS:
+- Standard Deviation: 122,319.00
+- Value at Risk (95%): -50,000.00
+- Value at Risk (99%): -50,000.00
+
+============================================================
+
+Expected value: $49,250 | Success rate: 39.7%
+
+[17/18] CMD: set my default browser to Chrome
+RES: Got it! I'll use chrome for browser from now on.
+
+[18/18] CMD: list my preferences
+RES: Your preferences:
+• command_at_15: general
+• command_at_5: general
+• volume: 30
+• browser: chrome
+• command_at_6: general

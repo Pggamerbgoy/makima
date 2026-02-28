@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d1" for="edge" attr.name="relationship" attr.type="string" />
+  <key id="d0" for="node" attr.name="type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="makima">
+      <data key="d0">Entity</data>
+    </node>
+    <node id="ai">
+      <data key="d0">Entity</data>
+    </node>
+    <node id="graph database entity extractor">
+      <data key="d0">Entity</data>
+    </node>
+    <edge source="makima" target="ai">
+      <data key="d1">is a</data>
+    </edge>
+    <edge source="makima" target="graph database entity extractor">
+      <data key="d1">is a</data>
+    </edge>
+  </graph>
+</graphml>

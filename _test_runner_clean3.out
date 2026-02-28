@@ -1,0 +1,112 @@
+spotipy not installed ΓÇö MusicDJ disabled.
+spotipy not installed. Spotify disabled.
+spotipy not installed. Spotify disabled.
+C:\Users\kamit\AppData\Local\Programs\Python\Python312\Lib\site-packages\cupy\_environment.py:215: UserWarning: CUDA path could not be detected. Set CUDA_PATH environment variable if CuPy fails to load.
+  warnings.warn(
+Starting Exhaustive Makima Test...
+≡ƒÜÇ Initializing Makima v4 Enhanced Engine...
+[10:51:56] [Commander] [INFO] Registered research agent: Research Agent
+[10:51:56] [Commander] [INFO] Registered code agent: Code Agent
+[10:51:56] [Commander] [INFO] Registered creative agent: Creative Agent
+[10:51:56] [Commander] [INFO] Registered executor agent: Executor Agent
+≡ƒñû Agent Swarm initialized with 5 agents
+[10:51:56] [Commander] [INFO] Registered web_v3 agent: V3 Web Agent
+≡ƒöù Linked V3 Custom Agent: WebAgent
+[10:51:56] [Commander] [INFO] Registered coder_v3 agent: V3 Auto Coder
+≡ƒöù Linked V3 Custom Agent: AutoCoder
+≡ƒº⌐ Contextual Knowledge Graph initialized (Optimized NetworkX Engine)
+≡ƒôè Feedback database initialized
+≡ƒöì Analyzing last 7 days of interactions...
+≡ƒºá Continuous Learning System initialized
+Γ£à Makima v4 fully initialized!
+≡ƒôè Found 5 patterns
+  Learned: general at 5:00 (confidence: 1.00)
+  Learned: general at 15:00 (confidence: 0.70)
+Γ£à Learning complete!
+≡ƒöº Initializing Makima tools...
+  Γ£à Response Cache ready
+  Γ£à Context Compressor ready
+  Γ£à Smart File Finder ready (indexing in background)
+  Γ£à Intent Detector ready
+[Proactive] Engine started
+  Γ£à Proactive Engine started
+[Shortcuts] Loaded 0 default shortcuts
+  Γ£à Shortcut Expander ready
+≡ƒöº All tools initialized!
+
+ΓÜá∩╕Å  CuPy failed to initialize (DLL load failed while importing curand: The specified module could not be found.)
+   (GPU acceleration disabled, using CPU only)
+
+[1/18] Testing: Hello Makima, who are you?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[2/18] Testing: Remember that my favorite programming language is Python.
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[3/18] Testing: What is my favorite programming language?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[4/18] Testing: which ai are you using?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[5/18] Testing: set volume to 30
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[6/18] Testing: volume up
+[Cache] Γ£à Exact hit (5 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[7/18] Testing: volume down
+[Cache] Γ£à Exact hit (5 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[8/18] Testing: mute volume
+[Cache] Γ£à Exact hit (6 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[9/18] Testing: unmute volume
+[Cache] Γ£à Exact hit (5 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[10/18] Testing: battery status
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[11/18] Testing: ram usage
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[12/18] Testing: cpu usage
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[13/18] Testing: what is my music taste profile?
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[14/18] Testing: simulate an investment of $10000 in Apple
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[15/18] Testing: simulate a job change
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[16/18] Testing: simulate a business venture
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[17/18] Testing: set my default browser to Chrome
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+[18/18] Testing: list my preferences
+[Cache] Γ£à Exact hit (1 hits)
+Γ₧£ ERROR: 'DecisionEngine' object has no attribute 'handle'
+
+All tests complete.

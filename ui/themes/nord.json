@@ -1,0 +1,27 @@
+{
+    "name": "Nord",
+    "colors": {
+        "background": "#2E3440",
+        "surface": "#3B4252",
+        "surface_elevated": "#434C5E",
+        "primary": "#88C0D0",
+        "primary_dark": "#5E81AC",
+        "secondary": "#4C566A",
+        "secondary_dark": "#434C5E",
+        "accent": "#A3BE8C",
+        "text": "#ECEFF4",
+        "text_secondary": "#D8DEE9",
+        "text_dim": "#4C566A",
+        "border": "#4C566A",
+        "border_light": "#5E81AC",
+        "user_bubble": "#88C0D0",
+        "user_bubble_end": "#5E81AC",
+        "makima_bubble": "#3B4252",
+        "makima_bubble_border": "#4C566A",
+        "input_bg": "#3B4252",
+        "button_hover": "#434C5E",
+        "error": "#BF616A",
+        "warning": "#EBCB8B",
+        "success": "#A3BE8C"
+    }
+}

@@ -1,0 +1,325 @@
+spotipy not installed ΓÇö MusicDJ disabled.
+Spotify unavailable: cannot import name 'SpotifyController' from 'systems.spotify_control' (C:\code\makima_v3\systems\spotify_control.py)
+spotipy not installed. Spotify disabled.
+DecisionEngine unavailable: No module named 'tools'
+C:\Users\kamit\AppData\Local\Programs\Python\Python312\Lib\site-packages\cupy\_environment.py:215: UserWarning: CUDA path could not be detected. Set CUDA_PATH environment variable if CuPy fails to load.
+  warnings.warn(
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+WARNING:Makima.MusicDJ:spotipy not installed ΓÇö MusicDJ disabled.
+Starting Exhaustive Makima Test...
+≡ƒÜÇ Initializing Makima v4 Enhanced Engine...
+[10:37:03] [Commander] [INFO] Registered research agent: Research Agent
+[10:37:03] [Commander] [INFO] Registered code agent: Code Agent
+[10:37:03] [Commander] [INFO] Registered creative agent: Creative Agent
+[10:37:03] [Commander] [INFO] Registered executor agent: Executor Agent
+≡ƒñû Agent Swarm initialized with 5 agents
+[10:37:03] [Commander] [INFO] Registered web_v3 agent: V3 Web Agent
+≡ƒöù Linked V3 Custom Agent: WebAgent
+[10:37:03] [Commander] [INFO] Registered coder_v3 agent: V3 Auto Coder
+≡ƒöù Linked V3 Custom Agent: AutoCoder
+≡ƒº⌐ Contextual Knowledge Graph initialized (Optimized NetworkX Engine)
+≡ƒôè Feedback database initialized
+≡ƒöì Analyzing last 7 days of interactions...
+≡ƒºá Continuous Learning System initialized
+Γ£à Makima v4 fully initialized!
+≡ƒôè Found 4 patterns
+  Learned: general at 15:00 (confidence: 0.70)
+Γ£à Learning complete!
+≡ƒöº Initializing Makima tools...
+  Γ£à Response Cache ready
+  Γ£à Context Compressor ready
+  Γ£à Smart File Finder ready (indexing in background)
+  Γ£à Intent Detector ready
+[Proactive] Engine started
+  Γ£à Proactive Engine started
+[Shortcuts] Loaded 0 default shortcuts
+  Γ£à Shortcut Expander ready
+≡ƒöº All tools initialized!
+
+ΓÜá∩╕Å  CuPy failed to initialize (DLL load failed while importing curand: The specified module could not be found.)
+   (GPU acceleration disabled, using CPU only)
+
+[1/18] Testing: Hello Makima, who are you?
+[Tools] Intent(chat, conf=74%, entities={}, missing=[])
+[10:37:05] [Commander] [INFO] Analyzing task: Hello Makima, who are you?
+[10:37:09] [Commander] [INFO] Created plan with 1 subtasks
+[10:37:09] [Commander] [WARNING] No agent for task type: research
+Γ£à Swarm completed in 4.84s
+Γ₧£ Response Length: 75
+
+[2/18] Testing: Remember that my favorite programming language is Python.
+[Tools] Intent(write_code, conf=74%, entities={}, missing=['task_description'])
+[10:37:10] [Commander] [INFO] Analyzing task: Remember that my favorite programming language is Python.
+[10:37:13] [Commander] [INFO] Created plan with 1 subtasks
+[10:37:13] [Research Agent] [INFO] Researching: Research Agent: Find relevant information about Python programming language. Provide a brief summary of its features and use cases.
+Γ£à Swarm completed in 7.04s
+Γ₧£ Response Length: 94
+
+[3/18] Testing: What is my favorite programming language?
+[Tools] Intent(get_info, conf=88%, entities={'topic': 'my favorite programming language?'}, missing=[])
+Γ₧£ Response Length: 43
+
+[4/18] Testing: which ai are you using?
+[Tools] Intent(chat, conf=74%, entities={}, missing=[])
+[10:37:17] [Commander] [INFO] Analyzing task: which ai are you using?
+[10:37:21] [Commander] [INFO] Created plan with 1 subtasks
+[10:37:21] [Research Agent] [INFO] Researching: Research Agent: Find out what AI is being used in this task. Provide a list of available agents and their capabilities. Return only valid JSON array of subtasks.
+Γ£à Swarm completed in 10.22s
+Γ₧£ Response Length: 347
+
+[5/18] Testing: set volume to 30
+[Tools] Intent(system_control, conf=73%, entities={}, missing=['action'])
+[10:37:27] [Commander] [INFO] Analyzing task: set volume to 30
+[10:37:28] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:37:28] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 4.10s
+Γ₧£ Response Length: 109
+
+[6/18] Testing: volume up
+[Tools] Intent(system_control, conf=73%, entities={'action': 'volume up'}, missing=[])
+[10:37:31] [Commander] [INFO] Analyzing task: volume up
+[10:37:34] [Commander] [INFO] Created plan with 1 subtasks
+[10:37:34] [Research Agent] [INFO] Researching: Analyze user request and break it into subtasks. Available agents: research, code, creative, executor, web_v3, coder_v3.
+Γ£à Swarm completed in 6.15s
+Γ₧£ Response Length: 115
+
+[7/18] Testing: volume down
+[Tools] Intent(system_control, conf=73%, entities={'action': 'volume down'}, missing=[])
+[10:37:38] [Commander] [INFO] Analyzing task: volume down
+[10:37:38] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:37:38] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 3.15s
+Γ₧£ Response Length: 56
+
+[8/18] Testing: mute volume
+[Tools] Intent(system_control, conf=73%, entities={'action': 'mute'}, missing=[])
+[10:37:41] [Commander] [INFO] Analyzing task: mute volume
+[10:37:42] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:37:42] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 3.97s
+Γ₧£ Response Length: 82
+
+[9/18] Testing: unmute volume
+[Cache] ≡ƒöì Fuzzy hit (92% similar)
+[10:37:45] [Commander] [INFO] Analyzing task: unmute volume
+[10:37:48] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:37:48] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 4.12s
+Γ₧£ Response Length: 90
+
+[10/18] Testing: battery status
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+[10:37:49] [Commander] [INFO] Analyzing task: battery status
+[10:37:52] [Commander] [INFO] Created plan with 1 subtasks
+[10:37:52] [Research Agent] [INFO] Researching: Analyze user request and break it into subtasks. Available agents: research, code, creative, executor, web_v3, coder_v3.
+Γ£à Swarm completed in 6.29s
+Γ₧£ Response Length: 123
+
+[11/18] Testing: ram usage
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+[10:37:55] [Commander] [INFO] Analyzing task: ram usage
+[10:37:57] [Commander] [INFO] Created plan with 1 subtasks
+[10:37:57] [Research Agent] [INFO] Researching: Research the topic of ram usage and provide a list of relevant tasks to complete. Provide the subtasks in an order that makes sense for completion. 
+Γ£à Swarm completed in 6.06s
+Γ₧£ Response Length: 66
+
+[12/18] Testing: cpu usage
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+[10:38:01] [Commander] [INFO] Analyzing task: cpu usage
+[10:38:02] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:38:02] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 3.45s
+Γ₧£ Response Length: 172
+
+[13/18] Testing: what is my music taste profile?
+[Tools] Intent(get_info, conf=88%, entities={'topic': 'my music taste profile?'}, missing=[])
+Γ₧£ Response Length: 69
+
+[14/18] Testing: simulate an investment of  in Apple
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+
+============================================================
+≡ƒÆ░ INVESTMENT DECISION ANALYSIS
+============================================================
+Asset: investment
+Amount: $5,000.00
+Expected Return: 15.0% annually
+Volatility: 20.0%
+Time Horizon: 365 days (1.0 years)
+============================================================
+
+≡ƒÆ░ Simulating 10,000 investment scenarios...
+   ≡ƒÄ« Using GPU: NVIDIA GeForce RTX 3050
+   Γ£à Complete in 0.11s (94986 sims/sec)
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: Γ£à RECOMMENDED
+CONFIDENCE: HIGH
+
+REASONING:
+Strong EV ($1,211) with 78.2% success rate
+
+KEY METRICS:
+- Success Rate: 78.2%
+- Expected Value: 1,211.48
+- Risk Level: HIGH
+- Best Case: 8,772.98
+- Worst Case: -3,061.56
+- Median Outcome: 1,046.48
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 7,820 (78.2%)
+- Negative outcomes: 2,180 (21.8%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 3,898.74
+- 75th percentile: 2,122.42
+- 50th percentile (median): 1,046.48
+- 25th percentile: 126.41
+- 5th percentile (pessimistic): -960.32
+
+RISK ANALYSIS:
+- Standard Deviation: 1,507.20
+- Value at Risk (95%): -960.32
+- Value at Risk (99%): -1,539.34
+
+============================================================
+
+Γ₧£ Response Length: 909
+
+[15/18] Testing: simulate a job change
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+
+============================================================
+≡ƒÆ╝ JOB CHANGE DECISION ANALYSIS
+============================================================
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+ERROR:root:[KnowledgeGraph Extractor] Failed to extract triples: Expecting value: line 1 column 1 (char 0)
+Current Job: $80,000/year
+New Job: $95,000/year
+Time Horizon: 5 years
+============================================================
+
+≡ƒÆ╝ Simulating 10,000 career paths over 5 years...
+   Γ£à Complete in 0.04s
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ΓÜá∩╕Å  WEAK PASS
+CONFIDENCE: MEDIUM
+
+REASONING:
+High success rate (61.6%) but negative EV ($-5,698) ΓÇö check your assumptions
+
+KEY METRICS:
+- Success Rate: 61.6%
+- Expected Value: -5,698.19
+- Risk Level: HIGH
+- Best Case: 524,934.97
+- Worst Case: -424,730.86
+- Median Outcome: 100,204.10
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 6,164 (61.6%)
+- Negative outcomes: 3,803 (38.0%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 362,534.97
+- 75th percentile: 100,204.10
+- 50th percentile (median): 100,204.10
+- 25th percentile: -139,940.16
+- 5th percentile (pessimistic): -424,730.86
+
+RISK ANALYSIS:
+- Standard Deviation: 218,701.27
+- Value at Risk (95%): -424,730.86
+- Value at Risk (99%): -424,730.86
+
+============================================================
+
+Γ₧£ Response Length: 976
+
+[16/18] Testing: simulate a business venture
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+
+============================================================
+≡ƒÜÇ BUSINESS VENTURE ANALYSIS
+============================================================
+Investment: $50,000.00
+Success Rate: 40.0%
+Success Return: 5.0x investment
+Failure Loss: 100% of investment
+============================================================
+
+≡ƒÄ▓ Simulating 10,000 binary outcomes...
+   Γ£à Complete in 0.00s
+
+============================================================
+≡ƒÄ» QUANTUM DECISION ANALYSIS
+============================================================
+
+RECOMMENDATION: ΓÜá∩╕Å  CAUTIOUSLY RECOMMENDED
+CONFIDENCE: MEDIUM
+
+REASONING:
+Positive EV ($50,850) but only 40.3% success ΓÇö high variance play
+
+KEY METRICS:
+- Success Rate: 40.3%
+- Expected Value: 50,850.00
+- Risk Level: HIGH
+- Best Case: 200,000.00
+- Worst Case: -50,000.00
+- Median Outcome: -50,000.00
+
+PROBABILITY DISTRIBUTION:
+- Positive outcomes: 4,034 (40.3%)
+- Negative outcomes: 5,966 (59.7%)
+
+PERCENTILES:
+- 95th percentile (optimistic): 200,000.00
+- 75th percentile: 200,000.00
+- 50th percentile (median): -50,000.00
+- 25th percentile: -50,000.00
+- 5th percentile (pessimistic): -50,000.00
+
+RISK ANALYSIS:
+- Standard Deviation: 122,644.92
+- Value at Risk (95%): -50,000.00
+- Value at Risk (99%): -50,000.00
+
+============================================================
+
+Γ₧£ Response Length: 973
+
+[17/18] Testing: set my default browser to Chrome
+[Tools] Intent(search_web, conf=73%, entities={}, missing=['query'])
+[10:38:05] [Commander] [INFO] Analyzing task: set my default browser to Chrome
+[10:38:08] [Commander] [WARNING] Failed to parse plan, using fallback
+[10:38:08] [Commander] [WARNING] No agent for task type: executor
+Γ£à Swarm completed in 5.21s
+Γ₧£ Response Length: 265
+
+[18/18] Testing: list my preferences
+[Tools] Intent(chat, conf=50%, entities={}, missing=[])
+[10:38:10] [Commander] [INFO] Analyzing task: list my preferences
+[10:38:11] [Commander] [INFO] Created plan with 1 subtasks
+[10:38:11] [Research Agent] [INFO] Researching: Find information about Makima's preferences
+Γ£à Swarm completed in 5.47s
+Γ₧£ Response Length: 38
+
+All tests complete.

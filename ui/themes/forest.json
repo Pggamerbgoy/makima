@@ -1,0 +1,27 @@
+{
+    "name": "Forest",
+    "colors": {
+        "background": "#0d1b0d",
+        "surface": "#1a331a",
+        "surface_elevated": "#2d4d2d",
+        "primary": "#52b788",
+        "primary_dark": "#40916c",
+        "secondary": "#233623",
+        "secondary_dark": "#1a2e1a",
+        "accent": "#95d5b2",
+        "text": "#d8f3dc",
+        "text_secondary": "#b7e4c7",
+        "text_dim": "#74c69d",
+        "border": "#233623",
+        "border_light": "#2d4b2d",
+        "user_bubble": "#52b788",
+        "user_bubble_end": "#40916c",
+        "makima_bubble": "#1a331a",
+        "makima_bubble_border": "#233623",
+        "input_bg": "#1a331a",
+        "button_hover": "#2d4d2d",
+        "error": "#e63946",
+        "warning": "#f4a261",
+        "success": "#2a9d8f"
+    }
+}

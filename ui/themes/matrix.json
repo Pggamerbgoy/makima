@@ -1,0 +1,27 @@
+{
+    "name": "Matrix",
+    "colors": {
+        "background": "#000000",
+        "surface": "#001a00",
+        "surface_elevated": "#003300",
+        "primary": "#00ff00",
+        "primary_dark": "#00cc00",
+        "secondary": "#003300",
+        "secondary_dark": "#002200",
+        "accent": "#00ff00",
+        "text": "#00ff00",
+        "text_secondary": "#00cc00",
+        "text_dim": "#006600",
+        "border": "#003300",
+        "border_light": "#00ff00",
+        "user_bubble": "#00ff00",
+        "user_bubble_end": "#00cc00",
+        "makima_bubble": "#001a00",
+        "makima_bubble_border": "#003300",
+        "input_bg": "#001a00",
+        "button_hover": "#003300",
+        "error": "#ff0000",
+        "warning": "#ffff00",
+        "success": "#00ff00"
+    }
+}

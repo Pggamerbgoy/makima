@@ -1,0 +1,27 @@
+{
+    "name": "Sunset",
+    "colors": {
+        "background": "#1a0e0e",
+        "surface": "#2d1515",
+        "surface_elevated": "#3d1f1f",
+        "primary": "#ff6b6b",
+        "primary_dark": "#ee5a52",
+        "secondary": "#4a2020",
+        "secondary_dark": "#3d1818",
+        "accent": "#ffa07a",
+        "text": "#fff5f5",
+        "text_secondary": "#ffcccc",
+        "text_dim": "#996666",
+        "border": "#4a2020",
+        "border_light": "#663333",
+        "user_bubble": "#ff6b6b",
+        "user_bubble_end": "#ee5a52",
+        "makima_bubble": "#2d1515",
+        "makima_bubble_border": "#4a2020",
+        "input_bg": "#2d1515",
+        "button_hover": "#3d1f1f",
+        "error": "#ff3860",
+        "warning": "#ffc048",
+        "success": "#48c774"
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d3" for="edge" attr.name="relationship" attr.type="string" />
+  <key id="d2" for="node" attr.name="version" attr.type="string" />
+  <key id="d1" for="node" attr.name="name" attr.type="string" />
+  <key id="d0" for="node" attr.name="type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="kamit">
+      <data key="d0">User</data>
+      <data key="d1">Kamit</data>
+    </node>
+    <node id="python">
+      <data key="d0">Language</data>
+      <data key="d2">3.12</data>
+    </node>
+    <node id="makima_v4">
+      <data key="d0">AIAssistant</data>
+      <data key="d2">4.0</data>
+    </node>
+    <edge source="kamit" target="python">
+      <data key="d3">programs_in</data>
+    </edge>
+    <edge source="kamit" target="makima_v4">
+      <data key="d3">built</data>
+    </edge>
+    <edge source="makima_v4" target="python">
+      <data key="d3">is_written_in</data>
+    </edge>
+  </graph>
+</graphml>

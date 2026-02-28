@@ -1,0 +1,21 @@
+# Memory System Configuration
+# Makima v4 - Knowledge Graph Config
+
+storage:
+  type: json  # Change to 'neo4j' when Part 3 is implemented
+  path: data/knowledge_graph.json
+
+# Neo4j config (for Part 3)
+neo4j:
+  uri: bolt://localhost:7687
+  username: neo4j
+  password: your_password_here
+
+embeddings:
+  model: sentence-transformers/all-MiniLM-L6-v2
+  dimension: 384
+  similarity_threshold: 0.7
+
+retrieval:
+  max_results: 10
+  context_window: 5

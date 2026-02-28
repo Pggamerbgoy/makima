@@ -1,0 +1,72 @@
+{
+  "gm": {
+    "expansion": "good morning makima",
+    "description": "",
+    "uses": 1,
+    "created": 1772278430.805289,
+    "auto": false
+  },
+  "gn": {
+    "expansion": "goodnight shutdown routine",
+    "description": "Night routine",
+    "uses": 0,
+    "created": 1772120661.6998796,
+    "auto": false
+  },
+  "wb": {
+    "expansion": "what's the weather today",
+    "description": "Quick weather",
+    "uses": 0,
+    "created": 1772120661.6998796,
+    "auto": false
+  },
+  "mu": {
+    "expansion": "volume up",
+    "description": "Volume up",
+    "uses": 0,
+    "created": 1772120661.7014027,
+    "auto": false
+  },
+  "md": {
+    "expansion": "volume down",
+    "description": "Volume down",
+    "uses": 0,
+    "created": 1772120661.7014027,
+    "auto": false
+  },
+  "ss": {
+    "expansion": "take a screenshot",
+    "description": "Screenshot",
+    "uses": 0,
+    "created": 1772120661.7014027,
+    "auto": false
+  },
+  "news": {
+    "expansion": "read me today's top news headlines",
+    "description": "Daily news",
+    "uses": 0,
+    "created": 1772120661.7029233,
+    "auto": false
+  },
+  "focus": {
+    "expansion": "enable focus mode for 2 hours",
+    "description": "Focus mode",
+    "uses": 0,
+    "created": 1772120661.7029233,
+    "auto": false
+  },
+  "wm": {
+    "expansion": "what's the weather in Mumbai",
+    "description": "",
+    "uses": 1,
+    "created": 1772278430.8042889,
+    "auto": false
+  },
+  "test99": {
+    "expansion": "test expansion 99",
+    "description": "",
+    "uses": 0,
+    "created": 1772278430.8063295,
+    "auto": false
+  }
+}

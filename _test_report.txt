@@ -1,0 +1,9 @@
+
+Traceback (most recent call last):
+==================================================
+  File "C:\code\makima_v3\_full_test.py", line 10, in <module>
+    print(" \U0001f338 MAKIMA V3 FULL SYSTEM DIAGNOSTIC TEST \U0001f338")
+  File "C:\Users\kamit\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f338' in position 1: character maps to <undefined>

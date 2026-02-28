@@ -1,0 +1,52 @@
+# Makima AI Assistant — Python Dependencies
+# Install with: pip install -r requirements.txt
+#
+# Core — required
+google-genai>=1.0.0              # Gemini AI backend (new official SDK — replaces google-generativeai)
+requests>=2.31.0                  # HTTP for web fetching + Ollama HTTP fallback
+psutil>=5.9.0                     # CPU/RAM/Battery monitoring
+python-dotenv>=1.0.0              # Load .env file at startup
+ollama>=0.3.0                     # Ollama Python client (local AI — makima-v3)
+
+# Voice — required for microphone input / TTS
+SpeechRecognition>=3.10.0         # Google Speech Recognition
+pyttsx3>=2.90                     # Text-to-speech (offline SAPI5 fallback)
+PyAudio>=0.2.13                   # Microphone backend for SpeechRecognition
+edge-tts>=6.1.9                   # Microsoft Neural TTS (NeerjaExpressiveNeural, free)
+pygame>=2.5.0                     # Audio playback for Edge TTS
+
+# Speech correction fuzzy matching
+thefuzz>=0.20.0                   # Fuzzy string matching for mishearing correction
+python-Levenshtein>=0.21.0        # Speeds up thefuzz significantly
+
+# GUI / Input
+pyautogui>=0.9.54                 # Volume keys, screenshots, window control
+pyperclip>=1.8.2                  # Clipboard monitoring
+pynput>=1.7.6                     # Macro recording (keyboard/mouse)
+
+# Spotify
+spotipy>=2.23.0                   # Spotify Web API
+
+# Web scraping
+beautifulsoup4>=4.12.0            # Page parsing for web agent
+
+# Cloud / Google Drive
+google-api-python-client>=2.100.0
+google-auth>=2.23.0
+google-auth-httplib2>=0.1.1
+
+# Telegram remote
+python-telegram-bot>=20.0         # Telegram bot API
+
+# Windows-specific (optional, improves functionality on Windows)
+# pycaw                           # Volume control via Windows COM API
+# winshell                        # Empty recycle bin
+
+# Optional: local LLM via Ollama (separate install)
+# Install Ollama from https://ollama.ai, then: ollama pull mistral
+
+# Optional: ClamAV for Linux virus scanning
+# sudo apt install clamav
+
+# Note: Rust, Go, and Mojo modules require separate compilation.
+# See rust_module/README.md and go_scheduler/README.md for instructions.

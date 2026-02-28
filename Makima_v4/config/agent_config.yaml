@@ -1,0 +1,37 @@
+# Agent Configuration
+# Makima v4 - Multi-Agent System Config
+
+commander:
+  max_subtasks: 10
+  parallel_execution: true
+  synthesis_temperature: 0.5
+  planning_temperature: 0.3
+
+research_agent:
+  max_sources: 5
+  summary_temperature: 0.3
+  fallback_to_ai: true
+
+code_agent:
+  default_language: python
+  test_code: true
+  execution_timeout: 5
+  generation_temperature: 0.2
+  debug_temperature: 0.2
+
+creative_agent:
+  default_style: professional
+  default_length: medium
+  default_tone: neutral
+  creative_temperature: 0.8
+  normal_temperature: 0.6
+
+executor_agent:
+  safe_mode: true
+  allowed_extensions:
+    - .txt
+    - .py
+    - .json
+    - .md
+    - .csv
+  backup_before_delete: true

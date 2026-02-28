@@ -1,0 +1,28 @@
+# Makima v4 Requirements
+
+# Core (no extra installs needed for base functionality)
+# Python 3.8+ standard library covers: sqlite3, threading, json, abc, subprocess
+
+# Optional - for enhanced features:
+
+# Web search integration
+# requests>=2.28.0
+# beautifulsoup4>=4.11.0
+
+# Vector embeddings (Part 3)
+# sentence-transformers>=2.2.0
+# numpy>=1.24.0
+
+# Neo4j graph database (Part 3)
+# neo4j>=5.0.0
+
+# YAML config parsing
+PyYAML>=6.0
+
+# Code analysis enhancements
+# astroid>=2.12.0  # Enhanced AST analysis
+
+# LLM integrations (use one):
+# openai>=1.0.0
+# anthropic>=0.8.0
+# groq>=0.4.0
