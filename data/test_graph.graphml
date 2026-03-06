@@ -5,9 +5,9 @@
   <key id="d1" for="node" attr.name="name" attr.type="string" />
   <key id="d0" for="node" attr.name="type" attr.type="string" />
   <graph edgedefault="directed">
-    <node id="kamit">
+    <node id="user">
       <data key="d0">User</data>
-      <data key="d1">Kamit</data>
+      <data key="d1">User</data>
     </node>
     <node id="python">
       <data key="d0">Language</data>
@@ -17,10 +17,10 @@
       <data key="d0">AIAssistant</data>
       <data key="d2">4.0</data>
     </node>
-    <edge source="kamit" target="python">
+    <edge source="user" target="python">
       <data key="d3">programs_in</data>
     </edge>
-    <edge source="kamit" target="makima_v4">
+    <edge source="user" target="makima_v4">
       <data key="d3">built</data>
     </edge>
     <edge source="makima_v4" target="python">
