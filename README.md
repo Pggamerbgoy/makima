@@ -311,4 +311,4 @@ Makima auto-detects Hindi (Devanagari or Hinglish) in both voice and text:
 
 ## 📄 License
 
-MIT License. Built with ❤️ using Python, Gemini, and Ollama.
+This project is licensed under the [MIT License](LICENSE). Built with ❤️ using Python, Gemini, and Ollama.
