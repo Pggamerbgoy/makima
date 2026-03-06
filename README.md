@@ -16,7 +16,7 @@ A modular, self-learning, bilingual (English/Hindi) AI assistant with voice I/O,
 | 📱 **App Control** | Fuzzy-matched open/close for any installed app |
 | 🖥️ **System Commands** | Volume, lock, screenshot, CPU/RAM/battery, window management |
 | 📡 **Telegram Remote** | Full command access from anywhere via Telegram bot |
-| 🌐 **Web Dashboard** | Browser UI at `localhost:8000` for LAN control |
+| 🌐 **Web Dashboard** | Browser UI at localhost:8000 for LAN control |
 | ☁️ **Cloud Sync** | Auto-syncs memories to Google Drive every 12 hours |
 | 🔒 **Security Scanner** | Voice-triggered Windows Defender / ClamAV scans |
 | 🎯 **Focus Mode** | Auto-kills distracting apps on a timer |
@@ -28,6 +28,25 @@ A modular, self-learning, bilingual (English/Hindi) AI assistant with voice I/O,
 | 🔋 **Battery Monitor** | Alerts at < 20% battery |
 | 🖼️ **Overlay** | Semi-transparent on-screen display of Makima's responses |
 | 👥 **3 Personas** | Makima, Normal, Date mode with auto-language detection |
+| 🖥️ **Electron UI** | Rich Desktop HUD and command center interface |
+| 🎮 **Proactive Engine** | Makima can initiate actions autonomously |
+| 👁️ **Vision & Screen** | Screen reading capabilities and Face/Emotion tracking |
+| 🌐 **Web Downloader** | Autonomous web search and Scrapy downloading |
+| 📱 **App Learner** | Autonomously learns how to use new applications |
+| 🎵 **Media & Music** | Spotify, YouTube playback, and intelligent Music DJ |
+| 💬 **Communication** | WhatsApp automation and Email management |
+| 📅 **Productivity** | Calendar tracking, File manager, Meeting assistant, Hotkeys |
+| ❤️ **Personal Care** | Health data tracker and Mood monitoring |
+| 📡 **Remote Control** | Full command access from anywhere via Telegram bot/Web UI |
+| ⌨️ **System Mastery** | Macros, fuzzy app matching, Focus Mode blocking, Battery alerts |
+| 🔒 **Security / Cloud** | Voice-triggered Defender scans, hourly Google Drive sync |
+
+---
+
+### Advanced Capabilities (Experimental)
+*   **Translation Engine**: Real-time multi-language translation.
+*   **Self-Updater**: System auto-updates components.
+*   **Quantum Simulator**: Experimental module.
 
 ---
 
@@ -166,6 +185,29 @@ Status                          → AI + memory status
 
 ---
 
+## 🔍 Code Review Requested!
+
+This is an active project seeking **community code review**.
+
+**Known Issues to Review:**
+- Threading safety in `_hud()` method
+- Exception handling specificity
+- Language detection hardcoding
+- Missing shutdown/cleanup
+- Microphone calibration blocking
+
+**Please open an issue if you find:**
+- 🐛 Bugs
+- 🔒 Security vulnerabilities
+- 📈 Performance problems
+- 🏗️ Architecture improvements
+- 📝 Documentation gaps
+- ✨ Code quality concerns
+
+**Your feedback helps improve this project!**
+
+---
+
 ## 🏗️ Architecture
 
 ```
@@ -173,11 +215,14 @@ makima/
 ├── makima_assistant.py          # Main entry — voice loop, TTS, monitors
 ├── core/
 │   ├── ai_handler.py            # Gemini + Ollama backends, persona, history
+│   ├── proactive_engine.py      # Autonomously initiates actions
 │   ├── eternal_memory.py        # Persistent memory, TF-IDF search
 │   └── command_router.py        # Intent routing for all commands
 ├── agents/
 │   ├── skill_teacher.py         # Self-learning: generate, verify, hot-load skills
 │   ├── web_agent.py             # DuckDuckGo search + page fetching
+│   ├── app_learner.py           # Learns app UI paths
+│   ├── screen_reader.py         # Reads active screen text
 │   └── auto_coder.py            # Write and run Python code on demand
 ├── systems/
 │   ├── app_control.py           # Fuzzy app open/close
@@ -190,7 +235,12 @@ makima/
 │   ├── media_observer.py        # Track currently playing media
 │   ├── battery_monitor.py       # Low battery alerts
 │   ├── clipboard_monitor.py     # URL detection in clipboard
-│   └── overlay.py               # On-screen text display (tkinter)
+│   ├── overlay.py               # On-screen text display (tkinter)
+│   ├── music_dj.py              # DJ module for media
+│   ├── whatsapp_manager.py      # WhatsApp automation
+│   ├── health_tracker.py        # Health & mood tracking
+│   └── ...                      # 15+ other system plugins
+├── ui/                          # Rich Electron-based UI components
 ├── remote/
 │   ├── telegram_remote.py       # Telegram bot remote control
 │   └── web_dashboard.py         # Local browser UI (port 8000)
