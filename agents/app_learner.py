@@ -244,6 +244,7 @@ class AppLearner:
                     # Skip Makima's own windows
                     title_lower = title.lower()
                     if any(kw in title_lower for kw in IGNORE_KEYWORDS):
+                        logger.debug(f"Ignoring window: {title}")
                         continue
                     app_name = _extract_app_name(title)
                     if app_name and app_name.lower() not in NATIVE_APPS:

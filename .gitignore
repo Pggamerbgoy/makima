@@ -10,6 +10,8 @@ __pycache__/
 venv/
 env/
 .venv/
+node_modules/
+whatsapp_session/
 
 # Makima Memory & Personal Data
 makima_memory/

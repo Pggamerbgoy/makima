@@ -46,14 +46,26 @@ except ImportError:
 
 try:
     import pytesseract
+    # Auto-detect Tesseract on Windows default paths
+    if OS == "Windows":
+        _tess_paths = [
+            r"C:\Program Files\Tesseract-OCR\tesseract.exe",
+            r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
+            os.path.join(os.getenv("LOCALAPPDATA", ""), r"Tesseract-OCR\tesseract.exe")
+        ]
+        for _p in _tess_paths:
+            if os.path.exists(_p):
+                pytesseract.pytesseract.tesseract_cmd = _p
+                break
     TESSERACT_AVAILABLE = True
 except ImportError:
     TESSERACT_AVAILABLE = False
 
 try:
-    import google.generativeai as genai
+    from google import genai as _genai
     GEMINI_AVAILABLE = True
-except ImportError:
+except (ImportError, TypeError, Exception):
+    _genai = None
     GEMINI_AVAILABLE = False
 
 
@@ -69,7 +81,8 @@ class ScreenReader:
         self._last_screenshot: Optional[object] = None
         self._last_description: str = ""
         self._last_context_time: float = 0
-        self._gemini_model = None
+        self._gemini_client = None
+        self._gemini_vision_model = "gemini-2.0-flash"
         self._auto_context = False
         os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
         self._init_gemini_vision()
@@ -79,8 +92,7 @@ class ScreenReader:
         if not GEMINI_AVAILABLE or not api_key:
             return
         try:
-            genai.configure(api_key=api_key)
-            self._gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+            self._gemini_client = _genai.Client(api_key=api_key)
             logger.info("✅ Gemini Vision ready for screen reading.")
         except Exception as e:
             logger.warning(f"Gemini Vision init failed: {e}")
@@ -119,11 +131,24 @@ class ScreenReader:
 
     def _analyze_with_gemini(self, image, prompt: str) -> Optional[str]:
         """Use Gemini Vision to analyze an image."""
-        if not self._gemini_model:
+        if not self._gemini_client:
             return None
         try:
-            response = self._gemini_model.generate_content([prompt, image])
-            return response.text.strip()
+            # Convert PIL image to bytes for the new genai API
+            buf = io.BytesIO()
+            image.save(buf, format="PNG")
+            image_bytes = buf.getvalue()
+
+            response = self._gemini_client.models.generate_content(
+                model=self._gemini_vision_model,
+                contents=[
+                    {"role": "user", "parts": [
+                        {"text": prompt},
+                        {"inline_data": {"mime_type": "image/png", "data": base64.b64encode(image_bytes).decode()}},
+                    ]}
+                ],
+            )
+            return (response.text or "").strip() or None
         except Exception as e:
             logger.warning(f"Gemini vision error: {e}")
             return None
@@ -158,7 +183,7 @@ class ScreenReader:
             # Fallback: OCR + AI summary
             text = self._extract_text_ocr(image)
             if text:
-                description = self.ai.chat(
+                description, _ = self.ai.chat(
                     f"Summarize what's on a computer screen based on this extracted text:\n{text[:1000]}"
                 )
             else:
@@ -203,9 +228,12 @@ class ScreenReader:
             "Be practical and specific."
         )
 
-        return help_text or self.ai.chat(
+        if help_text:
+            return help_text
+        reply, _ = self.ai.chat(
             f"Help me with what I see on screen: {self._last_description}"
         )
+        return reply
 
     def read_error(self) -> str:
         """Find and explain any error message on screen."""
@@ -236,12 +264,21 @@ class ScreenReader:
 
     def compare_before_after(self, before, after) -> str:
         """Compare two screenshots and describe what changed."""
-        if not self._gemini_model:
+        if not self._gemini_client:
             return "Gemini Vision required for comparison."
         try:
-            prompt = "Compare these two screenshots and describe what changed between them."
-            response = self._gemini_model.generate_content([prompt, before, after])
-            return response.text.strip()
+            # Convert both PIL images to base64
+            parts = [{"text": "Compare these two screenshots and describe what changed between them."}]
+            for img in (before, after):
+                buf = io.BytesIO()
+                img.save(buf, format="PNG")
+                parts.append({"inline_data": {"mime_type": "image/png", "data": base64.b64encode(buf.getvalue()).decode()}})
+
+            response = self._gemini_client.models.generate_content(
+                model=self._gemini_vision_model,
+                contents=[{"role": "user", "parts": parts}],
+            )
+            return (response.text or "").strip()
         except Exception as e:
             return f"Comparison failed: {e}"
 

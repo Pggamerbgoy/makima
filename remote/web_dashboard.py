@@ -9,8 +9,15 @@ import os
 import json
 import logging
 import threading
+import platform
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
+
+try:
+    from systems.system_commands import SystemCommands
+    sys_cmd = SystemCommands()
+except ImportError:
+    sys_cmd = None
 
 logger = logging.getLogger("Makima.WebDashboard")
 
@@ -33,19 +40,67 @@ class DashboardHandler(BaseHTTPRequestHandler):
         pass  # Suppress default access logs
 
     def do_GET(self):
-        if self.path == "/" or self.path == "/index.html":
+        parsed = urlparse(self.path)
+        if parsed.path == "/" or parsed.path == "/index.html":
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.end_headers()
             self.wfile.write(get_html_page().encode())
+        elif parsed.path == "/stats":
+            stats = {
+                "cpu": 0, "ram": 0, "battery": "N/A", "temp": 0
+            }
+            if sys_cmd:
+                try:
+                    # Parse numeric values from strings if possible
+                    cpu_str = sys_cmd.cpu_usage() # "CPU usage is at 10.5%."
+                    stats["cpu"] = float(cpu_str.split("at ")[1].replace("%", "").replace(".", "", 1).replace(".", "")) # Rough parse
+                    # Actually, let's just use psutil directly if available or return raw strings
+                    import psutil
+                    stats["cpu"] = psutil.cpu_percent()
+                    stats["ram"] = psutil.virtual_memory().percent
+                    batt = psutil.sensors_battery()
+                    stats["battery"] = batt.percent if batt else "N/A"
+                except: pass
+            
+            payload = json.dumps(stats).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(payload)
+
+        elif parsed.path == "/config":
+            config_path = os.path.join(os.getcwd(), "user_preferences.json")
+            data = {}
+            if os.path.exists(config_path):
+                try:
+                    with open(config_path, "r") as f:
+                        data = json.load(f)
+                except: pass
+            
+            # Add some .env info (masked)
+            data["env"] = {
+                "GEMINI_BACKEND": os.getenv("GEMINI_API_KEY") is not None,
+                "CALENDAR_ENABLED": os.getenv("CALENDAR_ENABLED") == "1",
+                "OLLAMA_MODEL": os.getenv("OLLAMA_MODEL", "llama3.2"),
+                "SPOTIPY_CLIENT_ID": os.getenv("SPOTIPY_CLIENT_ID") is not None
+            }
+            
+            payload = json.dumps(data).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(payload)
         else:
             self.send_response(404)
             self.end_headers()
 
     def do_POST(self):
-        if self.path == "/cmd":
-            length = int(self.headers.get("Content-Length", 0))
-            body = self.rfile.read(length)
+        length = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(length)
+        parsed = urlparse(self.path)
+        
+        if parsed.path == "/cmd":
             try:
                 data = json.loads(body)
                 cmd = data.get("cmd", "")
@@ -59,7 +114,33 @@ class DashboardHandler(BaseHTTPRequestHandler):
             payload = json.dumps({"response": response}).encode()
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
-            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload)
+
+        elif parsed.path == "/config":
+            try:
+                new_config = json.loads(body)
+                config_path = os.path.join(os.getcwd(), "user_preferences.json")
+                # Merge with existing
+                current = {}
+                if os.path.exists(config_path):
+                    with open(config_path, "r") as f:
+                        current = json.load(f)
+                
+                # Basic deep merge or just override explicit
+                if "explicit" in new_config:
+                    current.setdefault("explicit", {}).update(new_config["explicit"])
+                
+                with open(config_path, "w") as f:
+                    json.dump(current, f, indent=2)
+                
+                response = "Configuration updated successfully."
+            except Exception as e:
+                response = f"Error saving config: {e}"
+            
+            payload = json.dumps({"response": response}).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(payload)
 

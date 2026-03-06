@@ -141,7 +141,7 @@ class MeetingAssistant:
             return "No transcript captured."
 
         transcript = self._full_transcript_text()
-        notes = self.ai.chat(
+        notes, _ = self.ai.chat(
             f"You are a professional meeting note-taker.\n"
             f"Meeting: {self._current_meeting_title}\n\n"
             f"Transcript:\n{transcript[:4000]}\n\n"
@@ -166,19 +166,21 @@ class MeetingAssistant:
         if not self._transcript:
             return "Nothing to summarize yet."
         transcript = self._full_transcript_text()
-        return self.ai.chat(
+        reply, _ = self.ai.chat(
             f"Summarize this meeting transcript in 3 bullet points:\n{transcript[:3000]}"
         )
+        return reply
 
     def get_action_items(self) -> str:
         if not self._transcript:
             return "No transcript yet."
         transcript = self._full_transcript_text()
-        return self.ai.chat(
+        reply, _ = self.ai.chat(
             f"Extract all action items from this meeting transcript. "
             f"Format: '• [Person/Team]: [Task] by [deadline if mentioned]'\n\n"
             f"Transcript:\n{transcript[:3000]}"
         )
+        return reply
 
     def search_transcript(self, query: str) -> str:
         if not self._transcript:

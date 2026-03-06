@@ -125,10 +125,11 @@ class TranslationSystem:
 
     def _translate_ai(self, text: str, dest_lang: str) -> str:
         lang_name = self._code_to_name(dest_lang)
-        return self.ai.chat(
+        reply, _ = self.ai.chat(
             f"Translate the following text to {lang_name}. "
             f"Return ONLY the translation, nothing else:\n\n{text}"
         )
+        return reply
 
     def detect_language(self, text: str) -> str:
         """Detect language of text."""

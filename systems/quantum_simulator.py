@@ -5,7 +5,13 @@ Fully optimized for RTX 3050 + i5-12400F (12 threads)
 Uses BOTH GPU and CPU in perfect harmony for maximum performance
 
 Installation:
-pip install numpy scipy cupy-cuda11x psutil gputil matplotlib seaborn
+1. Check CUDA version: nvidia-smi
+2. Uninstall conflicts: pip uninstall cupy-cuda11x cupy-cuda12x cupy-cuda13x cupy
+3. Install matching CuPy:
+   - CUDA 11.x: pip install cupy-cuda11x
+   - CUDA 12.x: pip install cupy-cuda12x
+   - CUDA 13.x: pip install cupy-cuda12x  (Drivers are backward compatible)
+4. pip install numpy scipy psutil gputil matplotlib seaborn
 
 Usage:
     from quantum_simulator import QuantumSimulator
@@ -25,6 +31,7 @@ import numpy as np
 import time
 import platform
 import subprocess
+import warnings
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Any, Tuple
 import json
@@ -41,7 +48,9 @@ except:
 
 # GPU Acceleration
 try:
-    import cupy as cp
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*CUDA path.*")
+        import cupy as cp
     # Test if cupy can actually initialize and use the GPU for random generation
     cp.empty(1)
     cp.random.normal(0, 1, size=(1,))
@@ -51,6 +60,10 @@ except Exception as e:
     cp = np
     CUPY_AVAILABLE = False
     print(f"⚠️  CuPy failed to initialize ({e})")
+    if "attribute 'empty'" in str(e):
+        print("   👉 Hint: Bad install. Run: pip uninstall -y cupy cupy-cuda13x && pip install cupy-cuda12x")
+    elif "curand" in str(e) or "cudart" in str(e):
+        print("   👉 Hint: Missing CUDA DLLs. Run: pip uninstall -y cupy && pip install cupy-cuda12x")
     print("   (GPU acceleration disabled, using CPU only)")
 
 # Visualization
@@ -171,7 +184,7 @@ class HardwareDetector:
             self.batch_size = 500
         
         # GPU optimization
-        if self.specs['gpu']['available']:
+        if self.specs['gpu']['available'] and CUPY_AVAILABLE:
             cuda_cores = self.specs['gpu']['cuda_cores']
             gpu_memory = self.specs['gpu']['memory_gb']
             

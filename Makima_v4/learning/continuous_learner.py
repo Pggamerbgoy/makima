@@ -13,7 +13,8 @@ class ContinuousLearner:
     """
     Learns from every interaction and improves over time
     """
-    def __init__(self, preferences_manager=None, knowledge_graph=None, ai_handler=None):
+    def __init__(self, preferences_manager=None, knowledge_graph=None, ai_handler=None, on_conflict=None):
+        self.on_conflict = on_conflict
         self.feedback_db = FeedbackDatabase()
         self.pattern_analyzer = PatternAnalyzer()
         self.preferences_manager = preferences_manager
@@ -71,8 +72,18 @@ class ContinuousLearner:
                     pred = triple.get("predicate")
                     obj = triple.get("object")
                     if subj and pred and obj:
-                        self.knowledge_graph.add_edge(subj, obj, pred)
-                        print(f"🧩 [Graph] Mapped: [{subj}] --({pred})--> [{obj}]")
+                        conflict = self.knowledge_graph.add_edge(subj, obj, pred)
+                        if conflict:
+                            print(f"⚖️ [Consistency Guard] Found contradiction for '{subj}':")
+                            print(f"   Existing: {conflict['relationship']} -> {conflict['old_object']}")
+                            print(f"   New:      {conflict['relationship']} -> {conflict['new_object']}")
+                            if self.on_conflict:
+                                try:
+                                    self.on_conflict(conflict)
+                                except Exception as e:
+                                    print(f"Error in on_conflict callback: {e}")
+                        else:
+                            print(f"🧩 [Graph] Mapped: [{subj}] --({pred})--> [{obj}]")
             
             threading.Thread(target=extract_and_map, daemon=True).start()
     

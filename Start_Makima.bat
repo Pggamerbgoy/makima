@@ -1,6 +1,6 @@
 @echo off
-title Makima Assistant v3
+title Makima Assistant v5
 chcp 65001 >nul
-cd /d "C:\code\makima_v3"
-python makima_assistant.py
+cd /d "%~dp0\MAKIMA LAUNCHER"
+npm start
 pause

@@ -16,7 +16,7 @@ class KnowledgeGraph:
         self.storage_path = storage_path
         os.makedirs(os.path.dirname(storage_path), exist_ok=True)
         self.graph = self._load_graph()
-        self.last_save = time.time()
+        self.last_save = 0 # Ensure the first save always persists
         print("🧩 Contextual Knowledge Graph initialized (Optimized NetworkX Engine)")
     
     def _load_graph(self) -> nx.DiGraph:
@@ -30,18 +30,10 @@ class KnowledgeGraph:
         return nx.DiGraph()
     
     def _save_graph(self):
-        """
-        Save graph to file.
-
-        Throttled to prevent disk spamming during rapid inserts:
-        we only persist at most once every 5 seconds.
-        """
-        now = time.time()
-        if now - self.last_save < 5.0:
-            return
+        """Save graph to file."""
         try:
             nx.write_graphml(self.graph, self.storage_path)
-            self.last_save = now
+            self.last_save = time.time()
         except Exception as e:
             print(f"⚠️ Graph serialization failed: {e}")
 
@@ -55,13 +47,35 @@ class KnowledgeGraph:
         self._save_graph()
         return True
     
-    def add_edge(self, from_id: str, to_id: str, relationship: str, properties: Dict = None):
-        """Connect two entities with a directed relationship."""
+    def add_edge(self, from_id: str, to_id: str, relationship: str, properties: Dict = None) -> Optional[Dict]:
+        """
+        Connect two entities with a directed relationship.
+        Returns conflict_info if a contradiction is detected, else None.
+        """
         from_id = str(from_id).strip().lower()
         to_id = str(to_id).strip().lower()
+        relationship = str(relationship).strip().lower()
+
         if not properties:
             properties = {}
             
+        # ── CONFLICT DETECTION ──
+        # Check if this subject already has this relationship pointing elsewhere
+        # e.g. "User" --(lives in)--> "Mumbai" vs "User" --(lives in)--> "Delhi"
+        conflict_info = None
+        if self.graph.has_node(from_id):
+            for successor_id in self.graph.successors(from_id):
+                edge_data = self.graph.get_edge_data(from_id, successor_id)
+                if edge_data.get('relationship') == relationship and successor_id != to_id:
+                    conflict_info = {
+                        "subject": from_id,
+                        "relationship": relationship,
+                        "old_object": successor_id,
+                        "new_object": to_id
+                    }
+                    print(f"⚠️ [Graph Conflict] {from_id} --({relationship})--> {successor_id} CONTRADICTS {to_id}")
+                    break
+
         # Ensure nodes exist before tying them together to prevent graph islands
         if not self.graph.has_node(from_id):
             self.add_node(from_id, "Entity")
@@ -70,6 +84,7 @@ class KnowledgeGraph:
             
         self.graph.add_edge(from_id, to_id, relationship=relationship, **properties)
         self._save_graph()
+        return conflict_info
     
     def find_related(self, node_id: str, relationship: str = None) -> List[Dict]:
         """Traverse the graph to find connected nodes. Highly optimized O(1) adjacency lookup."""

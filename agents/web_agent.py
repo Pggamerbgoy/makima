@@ -30,32 +30,85 @@ class WebAgent:
         self.ai = ai
 
     def search(self, query: str) -> str:
-        """Try DuckDuckGo instant answers first, then open browser as fallback."""
-        if REQUESTS_AVAILABLE:
-            try:
-                resp = requests.get(
-                    self.DDGS_URL,
-                    params={"q": query, "format": "json", "no_redirect": 1, "no_html": 1},
-                    timeout=5,
-                    headers={"User-Agent": "Makima-Assistant/1.0"},
-                )
-                data = resp.json()
-                abstract = data.get("AbstractText", "")
-                answer = data.get("Answer", "")
-                result = abstract or answer
-                if result:
-                    return f"Here's what I found: {result[:300]}"
-            except Exception as e:
-                logger.warning(f"DuckDuckGo search failed: {e}")
+        """Fetch search results and synthesize answer using AI, avoiding browser popups."""
+        if not REQUESTS_AVAILABLE or not BS4_AVAILABLE:
+            # Fallback: open browser if libraries are missing
+            url = self.SEARCH_URL + query.replace(" ", "+")
+            webbrowser.open(url)
+            return f"Opened Google search for '{query}' in your browser (missing requests/bs4 text scraping)."
 
-        # Fallback: open browser
-        url = self.SEARCH_URL + query.replace(" ", "+")
-        webbrowser.open(url)
-        return f"Opened Google search for '{query}' in your browser."
+        # Try API first for quick facts
+        try:
+            resp = requests.get(
+                self.DDGS_URL,
+                params={"q": query, "format": "json", "no_redirect": 1, "no_html": 1},
+                timeout=5,
+                headers={"User-Agent": "Makima/1.0"},
+            )
+            data = resp.json()
+            result = data.get("AbstractText") or data.get("Answer")
+            if result and len(result) > 20:
+                return result
+        except Exception as e:
+            logger.debug(f"DDG API error: {e}")
 
-    def open_url(self, url: str) -> str:
-        webbrowser.open(url)
-        return f"Opened {url}."
+        # Deep Search via Scrapy Spider
+        try:
+            import subprocess
+            import tempfile
+            import os
+            import json
+            
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
+                out_path = tmp.name
+                
+            spider_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "core", "google_spider.py")
+            
+            # Prevent cmd window flash on Windows
+            creationflags = 0
+            if os.name == 'nt':
+                creationflags = subprocess.CREATE_NO_WINDOW
+                
+            subprocess.run(["python", spider_path, query, out_path], capture_output=True, timeout=15, creationflags=creationflags)
+            
+            snippets = []
+            if os.path.exists(out_path):
+                try:
+                    with open(out_path, "r", encoding="utf-8") as f:
+                        snippets = json.load(f)
+                except Exception:
+                    pass
+                os.remove(out_path)
+            
+            if not snippets:
+                url = self.SEARCH_URL + query.replace(" ", "+")
+                webbrowser.open(url)
+                return f"I couldn't scrape results with Scrapy, so I opened Chrome for: {query}"
+
+            # Synthesize answer with AI
+            context = "\n".join(f"- {s}" for s in snippets[:3])
+            prompt = (
+                f"Please concisely summarize the answer to my query based on these search results.\n"
+                f"Query: '{query}'\n"
+                f"Search Results:\n{context}"
+            )
+
+            if self.ai:
+                summary_result = self.ai.chat(prompt)
+                summary = summary_result[0] if isinstance(summary_result, tuple) else str(summary_result)
+                
+                # Local models might ignore prompt and just greet the user. Detect this.
+                lower_sum = summary.lower()
+                if "darling" in lower_sum or "listening" in lower_sum or len(summary) < 30 or "help you" in lower_sum:
+                    return f"Search Results:\n1. {snippets[0]}\n2. {snippets[1] if len(snippets)>1 else ''}"
+                
+                return summary
+            
+        except Exception as e:
+            logger.error(f"Search Scrapy scraping failed: {e}")
+            url = self.SEARCH_URL + query.replace(" ", "+")
+            webbrowser.open(url)
+            return f"Scrapy failed, opening browser instead. Error: {e}"
 
     def fetch_summary(self, url: str) -> str:
         """Fetch a page and summarize it with AI."""

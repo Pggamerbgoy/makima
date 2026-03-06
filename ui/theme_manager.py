@@ -32,11 +32,41 @@ class ThemeManager:
     def __init__(self):
         self.themes_dir = THEMES_DIR
         self.themes_dir.mkdir(parents=True, exist_ok=True)
-        self.current_theme = "dark_cyber"
+        self.current_theme = "v5_premium"
         self.custom_themes: dict = {}
 
         self.create_default_themes()
         self.load_custom_themes()
+
+    @staticmethod
+    def get_v5_premium_theme():
+        return {
+            "name": "V5 Premium",
+            "colors": {
+                "background":          "#050510",
+                "surface":             "rgba(10, 10, 30, 0.7)",
+                "surface_elevated":    "rgba(20, 20, 50, 0.8)",
+                "primary":             "#ff0055",
+                "primary_dark":        "#aa0033",
+                "secondary":           "#0f0f3d",
+                "secondary_dark":      "#0a0a2a",
+                "accent":              "#7d00ff",
+                "text":                "#ffffff",
+                "text_secondary":      "#b0b0f0",
+                "text_dim":            "#6060a0",
+                "border":              "rgba(255, 255, 255, 0.15)",
+                "border_light":        "rgba(255, 255, 255, 0.25)",
+                "user_bubble":         "#ff0055",
+                "user_bubble_end":     "#7d00ff",
+                "makima_bubble":       "rgba(15, 15, 45, 0.8)",
+                "makima_bubble_border":"rgba(125, 0, 255, 0.3)",
+                "input_bg":            "#0a0a2a",
+                "button_hover":        "rgba(255, 0, 85, 0.2)",
+                "error":               "#ff3366",
+                "warning":             "#ffaa00",
+                "success":             "#00ffcc",
+            },
+        }
 
     # ─── Default theme definitions ────────────────────────────────────────────
 

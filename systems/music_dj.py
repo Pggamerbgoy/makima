@@ -230,6 +230,7 @@ class MusicDJ:
         self.prefs = preferences_manager
 
         self.sp: Optional[spotipy.Spotify] = None
+        self.yt: Optional[object] = None # Will be set by setter or passed in
         self.current_mood: Optional[str] = None
         self.auto_dj_enabled: bool = False
         self._auto_dj_thread: Optional[threading.Thread] = None
@@ -438,6 +439,13 @@ class MusicDJ:
         """Queue up tracks for a mood and start playback."""
         err = self._check()
         if err:
+            # TRY YOUTUBE FALLBACK
+            if self.yt:
+                logger.info(f"Spotify unavailable, falling back to YouTube for mood: {mood}")
+                # Use mood keywords as search query
+                keywords = MOOD_PROFILES.get(mood, {}).get("keywords", [mood])
+                query = random.choice(keywords) + " mix"
+                return self.yt.play(query)
             return err
 
         profile = MOOD_PROFILES.get(mood)

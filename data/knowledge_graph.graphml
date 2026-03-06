@@ -3,19 +3,19 @@
   <key id="d1" for="edge" attr.name="relationship" attr.type="string" />
   <key id="d0" for="node" attr.name="type" attr.type="string" />
   <graph edgedefault="directed">
-    <node id="makima">
+    <node id="user">
       <data key="d0">Entity</data>
     </node>
-    <node id="ai">
+    <node id="mumbai">
       <data key="d0">Entity</data>
     </node>
-    <node id="graph database entity extractor">
+    <node id="engineer">
       <data key="d0">Entity</data>
     </node>
-    <edge source="makima" target="ai">
-      <data key="d1">is a</data>
+    <edge source="user" target="mumbai">
+      <data key="d1">lives in</data>
     </edge>
-    <edge source="makima" target="graph database entity extractor">
+    <edge source="user" target="engineer">
       <data key="d1">is a</data>
     </edge>
   </graph>

@@ -66,6 +66,62 @@ logger = logging.getLogger("Makima.ChatUI")
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# SystemStatsWidget — V5 Premium Telemetry
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class SystemStatsWidget(QWidget):
+    """Small header widget showing live CPU, RAM, and Battery."""
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setFixedHeight(56)
+        self._build_ui()
+        
+        self._timer = QTimer(self)
+        self._timer.timeout.connect(self._update_stats)
+        self._timer.start(3000)
+        self._update_stats()
+
+    def _build_ui(self):
+        layout = QHBoxLayout()
+        layout.setContentsMargins(15, 0, 15, 0)
+        layout.setSpacing(15)
+
+        self.cpu_lab = QLabel("CPU: 0%")
+        self.cpu_lab.setStyleSheet("color: #ff0055; font-weight: bold; font-family: 'Consolas'; font-size: 11px;")
+        
+        self.ram_lab = QLabel("RAM: 0%")
+        self.ram_lab.setStyleSheet("color: #7d00ff; font-weight: bold; font-family: 'Consolas'; font-size: 11px;")
+        
+        self.bat_lab = QLabel("BAT: --%")
+        self.bat_lab.setStyleSheet("color: #00ffcc; font-weight: bold; font-family: 'Consolas'; font-size: 11px;")
+
+        layout.addWidget(self.cpu_lab)
+        layout.addWidget(self.ram_lab)
+        layout.addWidget(self.bat_lab)
+        self.setLayout(layout)
+
+    def _update_stats(self):
+        try:
+            import psutil
+            cpu = psutil.cpu_percent()
+            ram = psutil.virtual_memory().percent
+            self.cpu_lab.setText(f"CPU: {int(cpu)}%")
+            self.ram_lab.setText(f"RAM: {int(ram)}%")
+            
+            bat = psutil.sensors_battery()
+            if bat:
+                self.bat_lab.setText(f"BAT: {int(bat.percent)}%")
+                if bat.power_plugged:
+                    self.bat_lab.setStyleSheet("color: #00ffcc; font-weight: bold; font-family: 'Consolas'; font-size: 11px;")
+                elif bat.percent < 20:
+                    self.bat_lab.setStyleSheet("color: #ff3366; font-weight: bold; font-family: 'Consolas'; font-size: 11px;")
+        except Exception:
+            pass
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # AnimatedButton  — FIX BUG-02: opacity flash, no position shift
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -683,12 +739,14 @@ class ChatInterface(QMainWindow):
 
         # Welcome bubble
         self._add_bubble(
-            "👋 Hey! I'm Makima, your AI assistant.\n\n"
-            "✨ Tips:\n"
-            "• Ctrl+K → Chat history   • Ctrl+M → Mini mode\n"
-            "• Drag & drop files into chat\n"
-            "• Voice input via 🎤 button\n"
-            "• Try: 'good morning' for daily briefing\n\n"
+            "🌸 **Makima V5 Premium Edition**\n"
+            "──────────────────────────\n"
+            "**Systems Hybrid-Core:** [ON]\n"
+            "**Telemetry Link:** [ACTIVE]\n\n"
+            "✨ **Premium Features:**\n"
+            "• **Live Stats:** Real-time CPU/RAM in the header\n"
+            "• **Global Config:** Manage AI & Persona via ⚙️\n"
+            "• **Glassmorphic UI:** Modern premium aesthetic\n\n"
             "How can I help you today?",
             is_user=False, skip_history=True,
         )
@@ -704,15 +762,14 @@ class ChatInterface(QMainWindow):
         lo.setSpacing(10)
 
         cmds = [
-            ("🌅", "Good morning briefing",       "good morning"),
-            ("🧠", "What do you remember?",        "what do you remember about me"),
-            ("🎭", "How am I feeling?",             "how am I feeling?"),
-            ("📝", "Summarize session",             "summarize this session"),
-            ("🔋", "Battery / system status",       "what is the battery percentage"),
-            ("📋", "Clipboard actions",             "what's in my clipboard"),
-            ("🔍", "Web search mode",               "search for "),
-            ("⚙",  "Open settings",                "_settings"),
-            ("🖥",  "Toggle HUD",                   "_hud"),
+            ("🌅", "Morning Briefing",          "good morning"),
+            ("🧠", "Recall Memories",           "what do you remember about me"),
+            ("🎭", "Mood Analysis",             "how am I feeling?"),
+            ("📝", "Session Summary",            "summarize this session"),
+            ("🔍", "Search Mode",              "search for "),
+            ("📊", "System Stats",              "_stats"),
+            ("⚙",  "Global Settings",          "_settings"),
+            ("🖥",  "Toggle HUD",               "_hud"),
         ]
 
         for icon, tip, cmd in cmds:
@@ -732,9 +789,11 @@ class ChatInterface(QMainWindow):
             self._open_settings()
         elif cmd == "_hud":
             self._toggle_hud()
+        elif cmd == "_stats":
+            self._add_bubble("📊 **System Telemetry:** Update every 3s.", is_user=False, skip_history=True)
         else:
             self.msg_input.setText(cmd)
-            if not cmd.endswith(" "):  # don't auto-send incomplete commands
+            if not cmd.endswith(" "):
                 self._send()
 
     # ── Header ────────────────────────────────────────────────────────────────
@@ -768,13 +827,18 @@ class ChatInterface(QMainWindow):
 
         name_col = QVBoxLayout()
         name_col.setSpacing(2)
-        n = QLabel("Makima")
+        n = QLabel("Makima V5")
         n.setObjectName("headerName")
         self.status_label = QLabel("🟢 Online")
         self.status_label.setObjectName("statusLabel")
         name_col.addWidget(n)
         name_col.addWidget(self.status_label)
         hl.addLayout(name_col)
+        
+        hl.addSpacing(40)
+        self.stats_widget = SystemStatsWidget()
+        hl.addWidget(self.stats_widget)
+        
         hl.addStretch()
 
         for icon, tip, slot in [
@@ -895,8 +959,6 @@ class ChatInterface(QMainWindow):
     # ── Send / process — BUG-14: lock during processing ───────────────────────
 
     def _send(self):
-        if self._processing:  # BUG-14: prevent spam
-            return
         text = self.msg_input.toPlainText().strip()
         if not text and not self.attached_files:
             return
@@ -907,7 +969,7 @@ class ChatInterface(QMainWindow):
         self._refresh_attachments()
 
         self._add_bubble(text, is_user=True, files=files)
-        self._set_processing(True)
+        # self._set_processing(True)  # Disabled to allow interruptions
 
         threading.Thread(target=self._process, args=(text, files), daemon=True).start()
 

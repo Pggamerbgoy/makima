@@ -11,6 +11,7 @@ import logging
 import re
 from datetime import datetime
 from collections import defaultdict
+import threading
 from typing import Optional
 
 logger = logging.getLogger("Makima.Memory")
@@ -113,6 +114,7 @@ class EternalMemory:
         self.notes: dict[str, str] = self._load_notes()
         self.search_engine = TFIDFSearch()
         self._corpus: list[str] = []
+        self._lock = threading.Lock()
         self._rebuild_index()
         logger.info(f"🧠 Memory loaded. {len(self._corpus)} conversation entries indexed.")
 
@@ -128,8 +130,9 @@ class EternalMemory:
         return {}
 
     def _save_notes(self):
-        with open(NOTES_FILE, "w", encoding="utf-8") as f:
-            json.dump(self.notes, f, ensure_ascii=False, indent=2)
+        with self._lock:
+            with open(NOTES_FILE, "w", encoding="utf-8") as f:
+                json.dump(self.notes, f, ensure_ascii=False, indent=2)
 
     def _rebuild_index(self):
         """Load all conversations from disk and rebuild TF-IDF index."""
@@ -157,29 +160,39 @@ class EternalMemory:
             "role": role,
             "content": content,
         }
-        try:
-            with open(CONVERSATIONS_FILE, "a", encoding="utf-8") as f:
-                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-            # Update in-memory corpus
-            self._corpus.append(content)
-            # Re-index every 5 entries when small, every 20 when large (avoid thrashing)
-            threshold = 5 if len(self._corpus) < 50 else 20
-            if len(self._corpus) % threshold == 0:
-                self.search_engine.fit(self._corpus)
-        except Exception as e:
-            logger.warning(f"Memory write error: {e}")
+        with self._lock:
+            try:
+                with open(CONVERSATIONS_FILE, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+                self._corpus.append(content)
+                # Re-index periodically — every 50 writes to avoid O(n²) on rapid bursts,
+                # and immediately on the first few entries so a fresh session is searchable.
+                if len(self._corpus) <= 5 or len(self._corpus) % 50 == 0:
+                    self.search_engine.fit(self._corpus)
+            except Exception as e:
+                logger.warning(f"Memory write error: {e}")
 
     # ─── Notes / Explicit Memories ────────────────────────────────────────────
 
     def remember(self, key: str, value: str):
-        """Save a user-defined note."""
-        self.notes[key] = value
+        """Alias for save_note to maintain compatibility."""
+        self.save_note(value, key=key)
+
+    def save_note(self, content: str, key: str = None):
+        """Auto-generate a key from content if not provided."""
+        if not key:
+            words = content.split()
+            key = " ".join(words[:3])
+        # Normalize key to lowercase so recall_note's .lower() lookup always matches
+        self.notes[key.lower()] = content
         self._save_notes()
-        logger.info(f"📝 Remembered: {key} = {value}")
 
     def recall_note(self, key: str) -> Optional[str]:
-        """Find a note by partial key match."""
+        """Enhanced recall with exact match priority and partial fallback."""
         key_lower = key.lower()
+        if key_lower in self.notes:
+            return self.notes[key_lower]
+        
         for k, v in self.notes.items():
             if key_lower in k.lower() or k.lower() in key_lower:
                 return v
@@ -196,59 +209,38 @@ class EternalMemory:
         """Score a note against query keywords."""
         note_text = text.lower()
         note_keywords = self._extract_keywords(note_text)
-
-        if not query_keywords or not note_keywords:
-            return 0.0
+        if not query_keywords or not note_keywords: return 0.0
 
         overlap = query_keywords & note_keywords
-
+        # Add fuzzy overlap
         for qw in query_keywords:
             for nw in note_keywords:
                 if len(qw) >= 4 and len(nw) >= 4:
                     if qw.startswith(nw[:4]) or nw.startswith(qw[:4]):
                         overlap.add(qw)
 
-        if not overlap:
-            return 0.0
-
+        if not overlap: return 0.0
         union = query_keywords | note_keywords
         jaccard = len(overlap) / len(union)
         coverage = len(overlap) / len(query_keywords)
         score = (jaccard * 0.5 + coverage * 0.5) * 0.7
-
-        kw_list = list(query_keywords)
-        for i in range(len(kw_list) - 1):
-            phrase = kw_list[i] + " " + kw_list[i + 1]
-            if phrase in note_text:
-                score += 0.25
-                break
-
         return min(score, 1.0)
 
     def search_memories(self, query: str, top_k: int = 3) -> list:
-        if not query or not query.strip():
-            return []
-
-        notes = self.notes
-        if not notes:
-            return []
-
+        if not query or not query.strip(): return []
         query_keywords = self._extract_keywords(query)
-        if not query_keywords:
-            return []
+        if not query_keywords: return []
 
         scored = []
-        for key, value in notes.items():
+        for key, value in self.notes.items():
             note_text = f"{key}: {value}"
             score = self._score_memory(query_keywords, note_text)
-            if score > 0:
-                scored.append((score, note_text))
+            if score > 0: scored.append((score, note_text))
 
         scored.sort(key=lambda x: x[0], reverse=True)
-        MIN_SCORE = 0.15
-        memories = [note_text for score, note_text in scored if score >= MIN_SCORE][:top_k]
+        memories = [note_text for _, note_text in scored if _ >= 0.15][:top_k]
         
-        # Add semantic conversation history
+        # Add semantic conversation history fallback
         if len(memories) < top_k:
             results = self.search_engine.search(query, top_k=top_k)
             memories.extend([doc for _, doc in results])
@@ -257,25 +249,19 @@ class EternalMemory:
 
     def build_memory_context(self, query: str) -> str:
         notes = self.search_memories(query, top_k=3)
-        if not notes:
-            return ""
-
+        if not notes: return ""
         lines = ["[Relevant memories:]"]
         for note in notes:
-            text = note.strip()
-            if text:
-                lines.append(f"- {text}")
+            if note.strip(): lines.append(f"- {note.strip()}")
         lines.append("[Only use above if directly relevant to the question.]")
         return "\n".join(lines)
 
-    # ─── Stats ────────────────────────────────────────────────────────────────
+    def search(self, query: str) -> Optional[str]:
+        """Generic search for backward compatibility."""
+        results = self.search_memories(query, top_k=1)
+        return results[0] if results else None
 
-    def get_stats(self) -> dict:
-        return {
-            "total_entries": len(self._corpus),
-            "notes_count": len(self.notes),
-            "memory_file": CONVERSATIONS_FILE,
-        }
+    # ─── Stats ────────────────────────────────────────────────────────────────
 
     def format_stats(self) -> str:
         s = self.get_stats()
@@ -283,3 +269,10 @@ class EternalMemory:
             f"I have {s['total_entries']} conversation memories "
             f"and {s['notes_count']} saved notes."
         )
+
+    def get_stats(self) -> dict:
+        return {
+            "total_entries": len(self._corpus),
+            "notes_count": len(self.notes),
+            "memory_file": CONVERSATIONS_FILE,
+        }

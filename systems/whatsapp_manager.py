@@ -193,7 +193,8 @@ class WhatsAppManager:
             f"and letting them know the user will respond soon. "
             f"Don't pretend to be human — mention you're an AI assistant if relevant."
         )
-        return self.ai.chat(prompt)
+        reply, _ = self.ai.chat(prompt)
+        return reply
 
     # ─── Auto-Reply Monitor ───────────────────────────────────────────────────
 

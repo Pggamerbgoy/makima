@@ -54,9 +54,10 @@ except ImportError:
 try:
     import vlc as _vlc
     VLC_AVAILABLE = True
-except ImportError:
+except Exception as e:
     _vlc = None
     VLC_AVAILABLE = False
+    logger.warning(f"VLC library not found or failed to load: {e}")
 
 try:
     import pygame

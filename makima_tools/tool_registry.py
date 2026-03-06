@@ -24,6 +24,9 @@ from makima_tools.smart_file_finder import SmartFileFinder
 from makima_tools.intent_detector import IntentDetector
 from makima_tools.proactive_engine import ProactiveEngine
 from makima_tools.shortcut_expander import ShortcutExpander
+import logging
+
+logger = logging.getLogger("Makima.Tools")
 
 
 class ToolRegistry:
@@ -39,38 +42,38 @@ class ToolRegistry:
 
     def initialize_all(self):
         """Initialize every tool. Call once on startup."""
-        print("🔧 Initializing Makima tools...")
+        logger.info("Initializing Makima tools...")
 
         # 1. Response Cache — speed up repeated queries
         self.cache = ResponseCache()
-        print("  ✅ Response Cache ready")
+        logger.debug("Response Cache ready")
 
         # 2. Context Compressor — never lose memory
-        ai = getattr(self.makima, 'ai_handler', None) or getattr(self.makima, 'ai', None)
+        ai = getattr(self.makima, 'ai_handler', None) or getattr(self.makima, '_ai', None)
         self.compressor = ContextCompressor(ai_handler=ai)
-        print("  ✅ Context Compressor ready")
+        logger.debug("Context Compressor ready")
 
         # 3. Smart File Finder — fast file search (indexes in background)
         self.finder = SmartFileFinder()
-        print("  ✅ Smart File Finder ready (indexing in background)")
+        logger.debug("Smart File Finder ready (indexing in background)")
 
         # 4. Intent Detector — understand commands instantly
         self.intent = IntentDetector()
-        print("  ✅ Intent Detector ready")
+        logger.debug("Intent Detector ready")
 
         # 5. Proactive Engine — context-aware suggestions
         speak_fn = getattr(self.makima, 'speak', None)
         execute_fn = getattr(self.makima, 'execute_command', None)
         self.proactive = ProactiveEngine(speak_fn=speak_fn, execute_fn=execute_fn)
         self.proactive.start()
-        print("  ✅ Proactive Engine started")
+        logger.debug("Proactive Engine started")
 
         # 6. Shortcut Expander — personal command shortcuts
         self.shortcuts = ShortcutExpander()
         self.shortcuts.load_defaults()
-        print("  ✅ Shortcut Expander ready")
+        logger.debug("Shortcut Expander ready")
 
-        print("🔧 All tools initialized!\n")
+        logger.info("All tools initialized.")
     def process_command(self, raw_input: str) -> tuple[bool, str]:
         """
         Run raw user input through all tools before routing.
@@ -89,7 +92,7 @@ class ToolRegistry:
 
         # Step 4: Detect intent (attach to context for routing)
         intent = self.intent.detect(expanded)
-        print(f"[Tools] {intent}")
+        logger.debug(f"Intent detected: {intent}")
 
         # Step 5: Update proactive engine with latest context
         self.proactive.update_context(last_activity_time=__import__('time').time())

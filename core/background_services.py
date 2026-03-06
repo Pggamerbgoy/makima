@@ -243,7 +243,7 @@ class WhatsAppService(BackgroundService):
             logger.debug(f"Get unread error: {e}")
         return unread
 
-    def _open_chat_and_reply(self, chat: dict) -> bool:
+    def _open_chat_and_reply(self, chat: dict) -> tuple[bool, str]:
         from selenium.webdriver.common.by import By
         from selenium.webdriver.common.keys import Keys
         from selenium.webdriver.support.ui import WebDriverWait
@@ -266,13 +266,16 @@ class WhatsAppService(BackgroundService):
 
             # Generate reply
             if self.use_ai_replies:
-                reply = self.ai.chat(
+                prompt = (
                     f"You are Makima, an AI assistant handling WhatsApp for the user who is busy.\n"
                     f"Contact '{chat['name']}' sent: '{last_msg or chat['preview']}'\n"
                     f"Write a brief, natural auto-reply (1-2 sentences). "
                     f"Be warm but mention the user is busy and will reply later. "
                     f"Don't be robotic. Don't use emojis excessively."
                 )
+                ai_result = self.ai.chat(prompt)
+                # ai.chat() returns a (reply_text, emotion) tuple — unpack correctly
+                reply = ai_result[0] if isinstance(ai_result, tuple) else str(ai_result)
             else:
                 reply = self.away_message or (
                     f"Hey! I'm a bit busy right now. "
@@ -330,14 +333,13 @@ class WhatsAppService(BackgroundService):
                             continue
 
                         # Auto-reply silently
-                        if name.lower() not in self.quiet_contacts:
-                            success, reply = self._open_chat_and_reply(chat)
-                            if success:
-                                self._replied.add(msg_id)
-                                self.log.add(
-                                    "WhatsApp", "Auto-replied",
-                                    f"To: {name} | Reply: {reply[:60]}..."
-                                )
+                        success, reply = self._open_chat_and_reply(chat)
+                        if success:
+                            self._replied.add(msg_id)
+                            self.log.add(
+                                "WhatsApp", "Auto-replied",
+                                f"To: {name} | Reply: {reply[:60]}..."
+                            )
 
             except Exception as e:
                 logger.debug(f"WhatsApp loop error: {e}")
@@ -482,19 +484,23 @@ class EmailService(BackgroundService):
 
         # Priority email → alert user NOW
         if self._is_priority(subject, body):
-            summary = self.ai.chat(
+            summary_result = self.ai.chat(
                 f"Summarize this urgent email in 1 sentence:\n"
                 f"From: {sender}\nSubject: {subject}\n{body[:500]}"
             )
+            # ai.chat() returns (reply, emotion) tuple
+            summary = summary_result[0] if isinstance(summary_result, tuple) else str(summary_result)
             self._alert_user(f"Priority email from {sender.split('<')[0]}: {summary}")
             self.log.add("Email", "Priority alert sent", f"{sender[:30]} | {subject[:40]}")
             return
 
         # Regular email → summarize silently for later
-        summary = self.ai.chat(
+        summary_result = self.ai.chat(
             f"Summarize this email in one short sentence:\n"
             f"From: {sender}\nSubject: {subject}\n{body[:500]}"
         )
+        # ai.chat() returns (reply, emotion) tuple
+        summary = summary_result[0] if isinstance(summary_result, tuple) else str(summary_result)
         self._pending_summaries.append({
             "sender": sender.split("<")[0].strip(),
             "subject": subject,

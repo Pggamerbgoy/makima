@@ -17,6 +17,18 @@ class SecurityManager:
     def quick_scan(self) -> str:
         return self._scan("Quick")
 
+    def stop_scan(self) -> str:
+        if OS == "Windows":
+            try:
+                # 1. Try standard cmdlet
+                subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-Command", "Remove-MpScan"], capture_output=True)
+                # 2. Forcefully kill any powershell processes trying to start a scan
+                subprocess.run(["powershell", "-Command", "Get-Process powershell | Where-Object { $_.CommandLine -like '*Start-MpScan*' } | Stop-Process -Force"], capture_output=True)
+                return "Forcing security scan to stop..."
+            except Exception as e:
+                return f"Failed to stop scan: {e}"
+        return "Stop scan not supported on this OS."
+
     def full_scan(self) -> str:
         return self._scan("Full")
 

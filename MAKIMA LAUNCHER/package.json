@@ -1,0 +1,28 @@
+{
+  "name": "makima-launcher",
+  "version": "2.0.0",
+  "description": "Makima AI Launcher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.makima.launcher",
+    "productName": "Makima",
+    "win": {
+      "target": "portable",
+      "icon": "assets/icon.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "assets/**"
+    ]
+  }
+}

@@ -38,16 +38,35 @@ class EntityExtractor:
                 temperature=0.1
             )
             
+            if not raw_response:
+                return []
+
             # Clean up the output in case the LLM wrapped it in markdown code blocks
             clean_json = raw_response.replace('```json', '').replace('```', '').strip()
             
-            if not clean_json:
-                return []
+            # Robust parsing
+            try:
+                # 1. Direct JSON load
+                triples = json.loads(clean_json)
+            except json.JSONDecodeError:
+                # 2. Regex fallback if JSON is embedded in text
+                import re
+                match = re.search(r'\[.*\]', clean_json, re.DOTALL)
+                if match:
+                    try:
+                        triples = json.loads(match.group(0))
+                    except:
+                        return []
+                else:
+                    return []
 
-            # Parse it
-            triples = json.loads(clean_json)
             if isinstance(triples, list):
-                return triples
+                # Ensure each item has required keys
+                valid_triples = []
+                for t in triples:
+                    if all(k in t for k in ("subject", "predicate", "object")):
+                        valid_triples.append(t)
+                return valid_triples
             return []
             
         except Exception as e:

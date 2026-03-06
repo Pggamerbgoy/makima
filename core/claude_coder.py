@@ -128,6 +128,11 @@ class ClaudeCoder:
         except Exception as e:
             logger.warning(f"Claude Coder init failed: {e}")
 
+    def reload_config(self):
+        """Reload API key and model from environment."""
+        self._model = os.getenv("CLAUDE_CODE_MODEL", DEFAULT_MODEL)
+        self._init_client()
+
     # ── Public API ────────────────────────────────────────────────────────────
 
     @property

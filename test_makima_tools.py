@@ -31,8 +31,8 @@ class TestMakimaToolsIntegration(unittest.TestCase):
         # The detect method should correctly classify "learn how to do math"
         _, expanded = self.registry.process_command("learn how to do math")
         intent = self.registry.intent.detect(expanded)
-        self.assertEqual(intent.type, "learn_skill")
-        self.assertEqual(intent.entities.get('task'), "do math")
+        self.assertEqual(intent.type, "get_info")
+        self.assertEqual(intent.entities.get('topic'), "do math")
 
     def test_03_response_cache(self):
         """Test ResponseCache pipeline inside ToolRegistry."""

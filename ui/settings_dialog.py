@@ -134,7 +134,7 @@ class SettingsDialog(QDialog):
         form.addRow("Backend:", self.backend_combo)
 
         self.model_input = QLineEdit(
-            os.getenv("OLLAMA_MODEL", "makima-v3")
+            os.getenv("OLLAMA_MODEL", "llama3.2")
         )
         form.addRow("Ollama Model:", self.model_input)
 

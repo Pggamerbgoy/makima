@@ -25,6 +25,7 @@ Usage:
 import os
 import json
 import logging
+import threading
 from collections import defaultdict
 
 logger = logging.getLogger("Makima.Preferences")
@@ -37,6 +38,7 @@ class PreferencesManager:
 
     def __init__(self, filepath: str = PREFERENCES_FILE):
         self.filepath = filepath
+        self._lock = threading.Lock()
         self.preferences: dict = {}                          # category → explicit value
         self.history: defaultdict = defaultdict(             # category → {value: count}
             lambda: defaultdict(int)
@@ -60,16 +62,17 @@ class PreferencesManager:
             logger.warning(f"Could not load preferences: {e}")
 
     def _save(self):
-        try:
-            with open(self.filepath, "w", encoding="utf-8") as f:
-                json.dump(
-                    {"explicit": self.preferences, "history": self.history},
-                    f,
-                    indent=2,
-                    ensure_ascii=False,
-                )
-        except Exception as e:
-            logger.warning(f"Could not save preferences: {e}")
+        with self._lock:
+            try:
+                with open(self.filepath, "w", encoding="utf-8") as f:
+                    json.dump(
+                        {"explicit": self.preferences, "history": self.history},
+                        f,
+                        indent=2,
+                        ensure_ascii=False,
+                    )
+            except Exception as e:
+                logger.warning(f"Could not save preferences: {e}")
 
     # ── Query ─────────────────────────────────────────────────────────────────
 

@@ -206,6 +206,10 @@ class MoodTracker:
             f"({distribution}). {trend}"
         )
 
+    def get_report(self) -> str:
+        """Alias for get_session_summary() — used by command_router._handle_my_mood."""
+        return self.get_session_summary()
+
     def get_history_summary(self, days: int = 7) -> str:
         """Return mood trends over the last N days."""
         cutoff = time.time() - (days * 86400)
@@ -321,13 +325,15 @@ class MoodTracker:
     def _load_history(self) -> list:
         if os.path.exists(MOOD_LOG_FILE):
             try:
-                return json.loads(open(MOOD_LOG_FILE, encoding="utf-8").read())
+                with open(MOOD_LOG_FILE, encoding="utf-8") as f:
+                    return json.load(f)
             except Exception:
                 pass
         return []
 
     def _save_history(self):
         try:
-            json.dump(self._history, open(MOOD_LOG_FILE, "w", encoding="utf-8"), indent=2)
+            with open(MOOD_LOG_FILE, "w", encoding="utf-8") as f:
+                json.dump(self._history, f, indent=2)
         except Exception as e:
             logger.warning(f"Mood log save error: {e}")

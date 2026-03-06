@@ -34,9 +34,10 @@ try:
     import cv2
     import numpy as np
     FR_AVAILABLE = True
-except ImportError:
+except (ImportError, TypeError, Exception) as e:
     FR_AVAILABLE = False
     logger.warning("face_recognition / opencv not installed. Face recognition disabled.")
+    logger.warning(f"Face recognition disabled. Error: {e}")
     logger.warning("Install: pip install face_recognition opencv-python numpy")
 
 

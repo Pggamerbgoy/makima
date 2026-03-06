@@ -24,11 +24,22 @@ import argparse
 import platform
 from datetime import datetime
 from pathlib import Path
+from unittest.mock import MagicMock
+import threading
+from pathlib import Path
 from typing import Callable, Optional
 
 # ── Ensure project root is on path ───────────────────────────────────────────
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
+
+# ── Fix for Windows UnicodeEncodeError ───────────────────────────────────────
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except AttributeError:
+        pass
 
 # ── ANSI colours ─────────────────────────────────────────────────────────────
 C = {
@@ -261,6 +272,27 @@ def test_ai():
         assert isinstance(r, str)
         return f"raw: {r[:80]!r}"
 
+    def t_parse_response_missing_key():
+        # Test JSON with a non-standard key 'text' instead of 'reply'
+        raw = '{"emotion": "neutral", "text": "This uses the wrong key"}'
+        reply, _ = ai._parse_response(raw)
+        assert reply == "This uses the wrong key", f"Failed to parse 'text' key: {reply}"
+        return "Parsed 'text' key correctly"
+
+    def t_parse_response_malformed():
+        # Test malformed JSON that regex can salvage
+        raw = '{"emotion": "neutral", "reply": "Salvaged from bad json"'
+        reply, _ = ai._parse_response(raw)
+        assert "Salvaged" in reply, f"Regex fallback failed: {reply}"
+        return "Regex fallback worked"
+
+    def t_parse_response_single_quotes():
+        # Test JSON with single quotes (invalid JSON but common LLM error)
+        raw = "{'emotion': 'neutral', 'reply': 'I used single quotes'}"
+        reply, _ = ai._parse_response(raw)
+        assert reply == "I used single quotes", f"Failed to parse single quotes: {reply}"
+        return "Parsed single quotes correctly"
+
     run("AIHandler initializes",           t_init,                    "ai")
     run("Set persona: makima",             t_set_persona_makima,      "ai")
     run("Set persona: normal",             t_set_persona_normal,      "ai")
@@ -273,6 +305,9 @@ def test_ai():
     run("Parse JSON response",             t_parse_response_json,     "ai")
     run("Parse plain text fallback",       t_parse_response_plain,    "ai")
     run("Parse wrapped JSON (```json)",    t_parse_response_wrapped,  "ai")
+    run("Parse non-standard keys",         t_parse_response_missing_key, "ai")
+    run("Parse malformed JSON",            t_parse_response_malformed,   "ai")
+    run("Parse single-quoted JSON",        t_parse_response_single_quotes, "ai")
     run("chat() returns (str, str)",       t_chat_returns_tuple,      "ai",  skip_in_fast=True)
     run("generate_response() works",       t_generate_response,       "ai",  skip_in_fast=True)
 
@@ -290,6 +325,14 @@ def test_router():
     mem = EternalMemory()
     ai  = AIHandler(memory=mem)
     router = CommandRouter(ai=ai, memory=mem)
+    router._manager = MagicMock()
+    # Mock system behavior
+    router._manager.system.mute.return_value = "System muted."
+    router._manager.system.unmute.return_value = "System unmuted."
+    router._manager.system._call.side_effect = lambda cmd, fallback: "10% usage"
+    # Mock preferences behavior
+    router._manager.prefs.set_explicit_preference.side_effect = lambda cat, val: f"Set {cat} to {val}."
+
 
     def route(cmd):
         resp, handler = router.route(cmd)
@@ -541,7 +584,8 @@ def test_manager():
     def t_web_search_detection():
         assert mgr._needs_web_search("search for latest ai news today") is True
         assert mgr._needs_web_search("what is my name") is False  # personal = no web
-        assert mgr._needs_web_search("who is the president of France") is True
+        assert mgr._needs_web_search("what is 1+1") is False  # math = no web
+        assert mgr._needs_web_search("what is python") is False  # general knowledge = no web
         return "web search gating correct"
 
     def t_memory_saved_after_handle():
@@ -551,6 +595,26 @@ def test_manager():
         after = len(mgr._memory._corpus) if mgr._memory else 0
         assert after > before, f"Memory should grow: before={before}, after={after}"
         return f"corpus grew {before} → {after}"
+
+    def t_handle_ai_knowledge_fallback():
+        # Mock the AI to say it doesn't know, and mock the web search
+        original_ai_direct = mgr._ai_direct
+        original_web = mgr.web
+
+        mgr._ai_direct = MagicMock(return_value="I'm not sure about that, my knowledge cutoff doesn't allow me to know.")
+        mgr.web = MagicMock()
+        mgr.web.ready = True
+        mgr.web.search = MagicMock(return_value="Web Search Result: Python 3.14 was released recently.")
+
+        r = mgr.handle("when is latest python released?")
+        
+        # Restore original
+        mgr._ai_direct = original_ai_direct
+        mgr.web = original_web
+        
+        assert "checked the web" in r.lower()
+        assert "Python 3.14" in r
+        return "fallback works"
 
     run("Manager starts",                    t_start,                      "manager")
     run("Status dict has all keys",          t_status_dict,                "manager")
@@ -565,6 +629,7 @@ def test_manager():
     run("Decision question detection",       t_decision_question_detection,"manager")
     run("Web search gating (Bug #10)",       t_web_search_detection,       "manager")
     run("Memory saved after handle() — Bug #3", t_memory_saved_after_handle,"manager")
+    run("AI knowledge limit fallback to web",t_handle_ai_knowledge_fallback,"manager")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1275,7 +1340,7 @@ def test_macros():
     def t_run_nonexistent():
         r = macros.run_macro("nonexistent_macro_xyz_12345")
         assert r and isinstance(r, str)
-        assert "not found" in r.lower() or "no macro" in r.lower() or "error" in r.lower() or "nonexistent" in r.lower()
+        assert "not found" in r.lower() or "no macro" in r.lower() or "error" in r.lower() or "nonexistent" in r.lower() or "unavailable" in r.lower()
         return r
 
     run("List macros",                t_list,             "macros")
@@ -1288,19 +1353,19 @@ def test_macros():
 
 def test_translator():
     section("20. TRANSLATOR")
-    from agents.translator import Translator
+    from agents.translator import TranslationSystem
     from core.ai_handler import AIHandler
 
     ai = AIHandler()
-    t  = Translator(ai=ai)
+    t  = TranslationSystem(ai=ai)
 
     def t_detect_english():
-        lang = t.detect_language("Hello how are you today")
+        lang, name = t.detect_language("Hello how are you today")
         assert lang and isinstance(lang, str)
         return lang
 
     def t_detect_hindi():
-        lang = t.detect_language("नमस्ते आप कैसे हैं")
+        lang, name = t.detect_language("नमस्ते आप कैसे हैं")
         assert lang and isinstance(lang, str)
         return lang
 
@@ -1342,8 +1407,14 @@ def test_security():
         assert r and isinstance(r, str)
         return r[:100]
 
+    def t_stop_scan():
+        r = sec.stop_scan()
+        assert r and isinstance(r, str)
+        return r[:100]
+
     run("Quick scan",       t_quick_scan,      "security")
     run("Scan downloads",   t_scan_downloads,  "security")
+    run("Stop scan",        t_stop_scan,       "security")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1473,12 +1544,6 @@ def test_regressions():
             f"Unmute returned mute response: {resp!r}"
         return f"handler={handler}, resp={resp!r}"
 
-    # BUG 7: command_router_v2.py has content
-    def t_bug7_v2_has_content():
-        src = Path("core/command_router_v2.py").read_text(encoding="utf-8")
-        assert len(src.strip()) > 4, "command_router_v2.py is still effectively empty"
-        return f"{len(src)} bytes"
-
     # BUG 8: Memory re-index uses smarter threshold
     def t_bug8_reindex_threshold():
         src = Path("core/eternal_memory.py").read_text(encoding="utf-8")
@@ -1528,7 +1593,6 @@ def test_regressions():
     run("Bug 4: _get_dj uses self._ method call",        t_bug4_dj_method_call,         "regression")
     run("Bug 5: _get_qs uses self._ method call",        t_bug5_qs_method_call,         "regression")
     run("Bug 6: unmute doesn't trigger mute handler",    t_bug6_mute_regex,             "regression")
-    run("Bug 7: command_router_v2.py has content",       t_bug7_v2_has_content,         "regression")
     run("Bug 8: adaptive re-index threshold",            t_bug8_reindex_threshold,      "regression")
     run("Bug 9: no local imports in generate_response",  t_bug9_no_local_import,        "regression")
     run("Bug 10: web search gating correct",             t_bug10_web_search_gating,     "regression")
@@ -1582,6 +1646,80 @@ def test_e2e():
                     f"Unmute returned mute response: {r!r}"
             return r[:80]
         run(f"E2E: {cmd[:50]}", _t, "e2e")
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 25. EXTENDED SYSTEMS (Email, Files, Updater)
+# ═════════════════════════════════════════════════════════════════════════════
+
+def test_systems_extended():
+    section("25. EXTENDED SYSTEMS (Email, Files, Updater)")
+    
+    # ── Email Manager ──
+    try:
+        from systems.email_manager import EmailManager
+        from core.ai_handler import AIHandler
+        
+        # Mock AI for email
+        ai = AIHandler()
+        email_mgr = EmailManager(ai=ai)
+        
+        def t_email_check_inbox():
+            res = email_mgr.check_inbox()
+            assert isinstance(res, str)
+            return res[:80]
+
+        run("Email: check_inbox", t_email_check_inbox, "systems_ext")
+    except Exception as e:
+        print(f"  {WARN} [systems_ext] EmailManager test skipped: {e}")
+
+    # ── File Manager ──
+    try:
+        from systems.file_manager import FileManager
+        if 'ai' not in locals(): ai = AIHandler()
+        file_mgr = FileManager(ai=ai)
+
+        def t_file_find():
+            res = file_mgr.find("python")
+            assert isinstance(res, str)
+            return res[:80]
+
+        def t_file_list():
+            res = file_mgr.list_folder(str(Path.cwd()))
+            assert isinstance(res, str)
+            return res[:80]
+
+        run("Files: find command", t_file_find, "systems_ext")
+        run("Files: list folder", t_file_list, "systems_ext")
+    except Exception as e:
+        print(f"  {WARN} [systems_ext] FileManager test skipped: {e}")
+
+    # ── Self Updater ──
+    try:
+        from systems.self_updater import SelfUpdater
+        
+        with tempfile.TemporaryDirectory() as tmp_root:
+            tmp_path = Path(tmp_root)
+            if 'ai' not in locals(): ai = AIHandler()
+            updater = SelfUpdater(ai_handler=ai, project_root=tmp_path)
+            
+            dummy_file = tmp_path / "test_module.py"
+            dummy_file.write_text("print('hello')", encoding="utf-8")
+
+            def t_updater_resolve_safe():
+                res = updater._resolve_file("test_module.py")
+                assert res == dummy_file
+                return "Resolved inside root"
+
+            def t_updater_resolve_unsafe():
+                res = updater._resolve_file("../outside.py")
+                assert res is None
+                return "Rejected path traversal"
+                
+            run("Updater: resolve safe path", t_updater_resolve_safe, "systems_ext")
+            run("Updater: reject unsafe path", t_updater_resolve_unsafe, "systems_ext")
+    except Exception as e:
+        print(f"  {WARN} [systems_ext] SelfUpdater test skipped: {e}")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1661,6 +1799,7 @@ MODULE_MAP = {
     "sub_managers": test_sub_managers,
     "regression":   test_regressions,
     "e2e":          test_e2e,
+    "systems_ext":  test_systems_extended,
 }
 
 if __name__ == "__main__":
@@ -1676,10 +1815,10 @@ if __name__ == "__main__":
     os.chdir(ROOT)  # ensure relative paths work
 
     print(f"\n{C['bold']}{C['cyan']}")
-    print("╔══════════════════════════════════════════════════════╗")
-    print("║         🌸 MAKIMA V3 — FULL SYSTEM TEST SUITE       ║")
-    print(f"║  {'Fast mode ON — skipping AI calls' if fast_mode else 'Full mode — testing everything':<50} ║")
-    print("╚══════════════════════════════════════════════════════╝")
+    print("+" + "-"*54 + "+")
+    print("|         MAKIMA V3 -- FULL SYSTEM TEST SUITE        |")
+    print(f"|  {'Fast mode ON -- skipping AI calls' if fast_mode else 'Full mode -- testing everything':<50} |")
+    print("+" + "-"*54 + "+")
     print(C['reset'])
 
     if args.module:

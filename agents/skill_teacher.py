@@ -88,8 +88,19 @@ def run(args: str = "") -> str:
         # Strip markdown fences if the model includes them
         raw = re.sub(r"```python\s*", "", raw)
         raw = re.sub(r"```\s*", "", raw)
+        raw = raw.strip()
+
+        # AST Analysis: If the code is just a function definition, append a call to it
+        try:
+            parsed = ast.parse(raw)
+            if parsed.body and isinstance(parsed.body[-1], ast.FunctionDef):
+                func_name = parsed.body[-1].name
+                raw += f"\nreturn {func_name}()"
+        except Exception:
+            pass  # If parsing fails, verification step will catch syntax errors later
+
         # Indent all lines for the function body
-        indented = "\n    ".join(raw.strip().splitlines())
+        indented = "\n    ".join(raw.splitlines())
         return indented
 
     def _verify_code(self, code_str: str) -> tuple[bool, str]:

@@ -284,7 +284,7 @@ class DailyBriefing:
         # Personal AI message at end
         if self.config.get("personal_message", True) and style != "quick":
             context = "\n".join(sections)
-            personal = self.ai.chat(
+            personal, _ = self.ai.chat(
                 f"Based on this morning briefing data:\n{context}\n\n"
                 f"Write one short, warm, personal sentence as Makima — "
                 f"an encouraging or insightful note tailored to what the user is facing today. "

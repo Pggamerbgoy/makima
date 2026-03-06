@@ -57,14 +57,25 @@ class TestMakimaManagerV3(unittest.TestCase):
     def test_handle_decision_simulator(self):
         print("Testing Simulator Route...")
         # The handle method directly checks "should i invest"
+        # Mock intent to ensure routing
+        mock_intent = MagicMock()
+        mock_intent.type = "quantum"
+        mock_intent.confidence = 0.9
+        self.manager.tools.detect_intent.return_value = mock_intent
+        
         res = self.manager.handle("should i invest 500 dollars in bitcoin?")
         self.assertTrue(self.manager.simulator.analyze.called)
         self.assertEqual(res, "Mock decision.")
 
     def test_handle_web_search(self):
         print("Testing Web Route...")
-        # Keyword "what is" triggers _needs_web_search
-        res = self.manager.handle("what is the capital of france?")
+        # Mock intent to ensure routing
+        mock_intent = MagicMock()
+        mock_intent.type = "search_web"
+        mock_intent.confidence = 0.9
+        self.manager.tools.detect_intent.return_value = mock_intent
+        
+        res = self.manager.handle("search for the capital of france")
         self.assertTrue(self.manager.web.search.called)
         self.assertEqual(res, "Mock web search result.")
 

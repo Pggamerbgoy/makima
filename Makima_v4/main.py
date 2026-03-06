@@ -33,26 +33,9 @@ class AIHandlerAdapter:
     def __init__(self, ai_handler):
         self.ai = ai_handler
     
-    def generate_response(self, system_prompt: str, user_message: str, temperature: float = 0.7) -> str:
-        prompt = f"{system_prompt}\nUser Request: {user_message}"
-        raw = None
-        if self.ai._is_gemini_available():
-            raw = self.ai._call_gemini(prompt)
-        if not raw:
-            raw = self.ai._call_ollama(user_message, system_prompt)
-        
-        # Clean it
-        if raw is None:
-            return "[]"
-            
-        try:
-            import json
-            data = json.loads(raw)
-            if "reply" in data:
-                return data["reply"]
-        except Exception:
-            pass
-        return raw
+    def generate_response(self, system_prompt: str, user_message: str, temperature: float = 0.3) -> str:
+        # Simply delegate to the core handler with json_mode=True
+        return self.ai.generate_response(system_prompt, user_message, temperature=temperature, json_mode=True)
 
 class PreferencesAdapter:
     def __init__(self, prefs):
@@ -65,7 +48,7 @@ class PreferencesAdapter:
         return self.prefs.get_preference(str(key))
 
 class MakimaV4:
-    def __init__(self, ai_handler=None):
+    def __init__(self, ai_handler=None, on_conflict=None):
         print("🚀 Initializing Makima v4 Enhanced Engine...")
         
         # Your existing systems
@@ -89,7 +72,8 @@ class MakimaV4:
         self.learner = ContinuousLearner(
             preferences_manager=PreferencesAdapter(self.preferences),
             knowledge_graph=self.memory,
-            ai_handler=AIHandlerAdapter(self.ai)
+            ai_handler=AIHandlerAdapter(self.ai),
+            on_conflict=on_conflict
         )
         print("✅ Makima v4 fully initialized!")
 

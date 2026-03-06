@@ -35,13 +35,6 @@ from datetime import datetime, timedelta
 
 logger = logging.getLogger("Makima.Email")
 
-EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS", "")
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD", "")  # Use App Password for Gmail
-IMAP_SERVER = os.getenv("IMAP_SERVER", "imap.gmail.com")
-IMAP_PORT = int(os.getenv("IMAP_PORT", "993"))
-SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-
 PRIORITY_KEYWORDS = [
     "urgent", "asap", "immediately", "important", "action required",
     "deadline", "invoice", "payment", "interview", "offer", "job",
@@ -82,16 +75,23 @@ class EmailManager:
     def __init__(self, ai):
         self.ai = ai
         self._imap: Optional[imaplib.IMAP4_SSL] = None
-        self._check()
 
-    def _check(self):
-        if not EMAIL_ADDRESS or not EMAIL_PASSWORD:
-            logger.info("Email credentials not set. Email manager disabled.")
+    @property
+    def _creds(self):
+        return {
+            "addr": os.getenv("EMAIL_ADDRESS", ""),
+            "pass": os.getenv("EMAIL_PASSWORD", ""),
+            "imap_srv": os.getenv("IMAP_SERVER", "imap.gmail.com"),
+            "imap_port": int(os.getenv("IMAP_PORT", "993")),
+            "smtp_srv": os.getenv("SMTP_SERVER", "smtp.gmail.com"),
+            "smtp_port": int(os.getenv("SMTP_PORT", "587")),
+        }
 
     def _connect_imap(self) -> bool:
+        c = self._creds
         try:
-            self._imap = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
-            self._imap.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            self._imap = imaplib.IMAP4_SSL(c["imap_srv"], c["imap_port"])
+            self._imap.login(c["addr"], c["pass"])
             return True
         except Exception as e:
             logger.warning(f"IMAP connection failed: {e}")
@@ -99,7 +99,8 @@ class EmailManager:
 
     def _fetch_emails(self, folder: str = "INBOX", limit: int = 10,
                       sender_filter: str = None, unread_only: bool = False) -> List[EmailMessage]:
-        if not EMAIL_ADDRESS:
+        c = self._creds
+        if not c["addr"]:
             return []
 
         if not self._connect_imap():
@@ -154,7 +155,7 @@ class EmailManager:
     # ─── Read & Summarize ─────────────────────────────────────────────────────
 
     def check_inbox(self, unread_only: bool = True) -> str:
-        if not EMAIL_ADDRESS:
+        if not os.getenv("EMAIL_ADDRESS"):
             return "Email not configured. Set EMAIL_ADDRESS and EMAIL_PASSWORD in .env"
 
         emails = self._fetch_emails(unread_only=unread_only, limit=5)
@@ -174,7 +175,7 @@ class EmailManager:
         return "\n".join(lines)
 
     def email_digest(self) -> str:
-        if not EMAIL_ADDRESS:
+        if not os.getenv("EMAIL_ADDRESS"):
             return "Email not configured."
 
         emails = self._fetch_emails(unread_only=True, limit=5)
@@ -184,7 +185,7 @@ class EmailManager:
         summaries = []
         for e in emails:
             snippet = e.body[:500]
-            summary = self.ai.chat(
+            summary, _ = self.ai.chat(
                 f"Summarize this email in one sentence:\n"
                 f"From: {e.sender}\nSubject: {e.subject}\n{snippet}"
             )
@@ -193,7 +194,7 @@ class EmailManager:
         return f"Email digest ({len(emails)} emails):\n" + "\n".join(summaries)
 
     def read_from(self, sender: str) -> str:
-        if not EMAIL_ADDRESS:
+        if not os.getenv("EMAIL_ADDRESS"):
             return "Email not configured."
 
         emails = self._fetch_emails(sender_filter=sender, limit=3)
@@ -201,7 +202,7 @@ class EmailManager:
             return f"No emails found from '{sender}'."
 
         e = emails[0]
-        summary = self.ai.chat(
+        summary, _ = self.ai.chat(
             f"Summarize this email clearly:\nFrom: {e.sender}\nSubject: {e.subject}\n{e.body[:1000]}"
         )
         return f"Latest from {e.sender}:\nSubject: {e.subject}\n\n{summary}"
@@ -217,7 +218,7 @@ class EmailManager:
             f"Format: Subject: [subject]\n\n[body]\n\n"
             f"Keep it concise and professional."
         )
-        draft = self.ai.chat(prompt)
+        draft, _ = self.ai.chat(prompt)
 
         # Parse subject and body
         lines = draft.strip().split("\n")
@@ -247,25 +248,26 @@ class EmailManager:
             f"My reply intent: {intent}\n"
             f"Write only the reply body, professional and concise."
         )
-        reply_body = self.ai.chat(prompt)
+        reply_body, _ = self.ai.chat(prompt)
         to = e.sender
         subject = f"Re: {e.subject}"
         return self._send(to=to, subject=subject, body=reply_body)
 
     def _send(self, to: str, subject: str, body: str) -> str:
-        if not EMAIL_ADDRESS:
+        c = self._creds
+        if not c["addr"]:
             return "Email not configured."
         try:
             msg = MIMEMultipart()
-            msg["From"] = EMAIL_ADDRESS
+            msg["From"] = c["addr"]
             msg["To"] = to
             msg["Subject"] = subject
             msg.attach(MIMEText(body, "plain"))
 
-            with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            with smtplib.SMTP(c["smtp_srv"], c["smtp_port"]) as server:
                 server.starttls()
-                server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-                server.sendmail(EMAIL_ADDRESS, to, msg.as_string())
+                server.login(c["addr"], c["pass"])
+                server.sendmail(c["addr"], to, msg.as_string())
 
             logger.info(f"Email sent to {to}: {subject}")
             return f"Email sent to {to}. Subject: {subject}"

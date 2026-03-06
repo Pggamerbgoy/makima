@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\code\makima_fixed\code editor\editor_v2\editor\main_window.py", line 779, in closeEvent
+    for i in range(self.tab_manager.tabs.tabs.count())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'QTabWidget' object has no attribute 'tabs'

@@ -94,4 +94,5 @@ class AutoCoder:
             return f"Script failed: {e}"
 
     def explain(self, code: str) -> str:
-        return self.ai.chat(f"Explain this code in simple terms:\n\n{code}")
+        reply, _ = self.ai.chat(f"Explain this code in simple terms:\n\n{code}")
+        return reply
